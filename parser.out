@@ -1,0 +1,3599 @@
+Grammar:
+
+Rule 0     S' -> stmt
+Rule 1     expr -> ( expr )
+Rule 2     expr -> MINUS expr  [precedence=right, level=4]
+Rule 3     expr -> OBJECT
+Rule 4     expr -> INPUT ( expr )
+Rule 5     expr -> INPUT
+Rule 6     expr -> PRINT
+Rule 7     expr -> ID ( )
+Rule 8     expr -> ID ( expr )
+Rule 9     expr -> ID ( param )
+Rule 10    expr -> ID
+Rule 11    expr -> expr . ID
+Rule 12    expr -> expr . expr
+Rule 13    expr -> ID . expr
+Rule 14    expr -> ID . ID
+Rule 15    expr -> STRING
+Rule 16    expr -> NUMBER
+Rule 17    expr -> expr OR expr
+Rule 18    expr -> expr AND expr
+Rule 19    expr -> expr GT expr  [precedence=nonassoc, level=1]
+Rule 20    expr -> expr LT expr  [precedence=nonassoc, level=1]
+Rule 21    expr -> expr EQ expr  [precedence=nonassoc, level=1]
+Rule 22    expr -> expr NE expr  [precedence=nonassoc, level=1]
+Rule 23    expr -> expr GE expr  [precedence=nonassoc, level=1]
+Rule 24    expr -> expr LE expr  [precedence=nonassoc, level=1]
+Rule 25    expr -> expr DIVIDE expr  [precedence=left, level=3]
+Rule 26    expr -> expr TIMES expr  [precedence=left, level=3]
+Rule 27    expr -> expr MINUS expr  [precedence=left, level=2]
+Rule 28    expr -> expr PLUS expr  [precedence=left, level=2]
+Rule 29    stmt -> expr ;
+Rule 30    stmt -> expr ; stmt
+Rule 31    stmt -> stmt ;
+Rule 32    stmt -> stmt ; stmt
+Rule 33    stmt -> FUNC ID { stmt }
+Rule 34    stmt -> FUNC ID expr { stmt }
+Rule 35    stmt -> FUNC ID param { stmt }
+Rule 36    stmt -> IF expr { stmt } ELSE { stmt }
+Rule 37    stmt -> IF expr { stmt }
+Rule 38    stmt -> WHILE expr { stmt }
+Rule 39    stmt -> RETURN expr
+Rule 40    stmt -> PRINT ( expr )
+Rule 41    stmt -> expr = expr
+Rule 42    stmt -> ID = expr
+Rule 43    param -> param , param
+Rule 44    param -> expr , param
+Rule 45    param -> expr , expr
+
+Terminals, with rules where they appear:
+
+(                    : 1 4 7 8 9 40
+)                    : 1 4 7 8 9 40
+,                    : 43 44 45
+.                    : 11 12 13 14
+;                    : 29 30 31 32
+=                    : 41 42
+AND                  : 18
+DIVIDE               : 25
+ELSE                 : 36
+EQ                   : 21
+FUNC                 : 33 34 35
+GE                   : 23
+GT                   : 19
+ID                   : 7 8 9 10 11 13 14 14 33 34 35 42
+IF                   : 36 37
+INPUT                : 4 5
+LE                   : 24
+LT                   : 20
+MINUS                : 2 27
+NE                   : 22
+NUMBER               : 16
+OBJECT               : 3
+OR                   : 17
+PLUS                 : 28
+PRINT                : 6 40
+RETURN               : 39
+STRING               : 15
+TIMES                : 26
+WHILE                : 38
+error                : 
+{                    : 33 34 35 36 36 37 38
+}                    : 33 34 35 36 36 37 38
+
+Nonterminals, with rules where they appear:
+
+expr                 : 1 2 4 8 11 12 12 13 17 17 18 18 19 19 20 20 21 21 22 22 23 23 24 24 25 25 26 26 27 27 28 28 29 30 34 36 37 38 39 40 41 41 42 44 45 45
+param                : 9 35 43 43 44
+stmt                 : 30 31 32 32 33 34 35 36 36 37 38 0
+
+
+state 0
+
+    (0) S' -> . stmt
+    (29) stmt -> . expr ;
+    (30) stmt -> . expr ; stmt
+    (31) stmt -> . stmt ;
+    (32) stmt -> . stmt ; stmt
+    (33) stmt -> . FUNC ID { stmt }
+    (34) stmt -> . FUNC ID expr { stmt }
+    (35) stmt -> . FUNC ID param { stmt }
+    (36) stmt -> . IF expr { stmt } ELSE { stmt }
+    (37) stmt -> . IF expr { stmt }
+    (38) stmt -> . WHILE expr { stmt }
+    (39) stmt -> . RETURN expr
+    (40) stmt -> . PRINT ( expr )
+    (41) stmt -> . expr = expr
+    (42) stmt -> . ID = expr
+    (1) expr -> . ( expr )
+    (2) expr -> . MINUS expr
+    (3) expr -> . OBJECT
+    (4) expr -> . INPUT ( expr )
+    (5) expr -> . INPUT
+    (6) expr -> . PRINT
+    (7) expr -> . ID ( )
+    (8) expr -> . ID ( expr )
+    (9) expr -> . ID ( param )
+    (10) expr -> . ID
+    (11) expr -> . expr . ID
+    (12) expr -> . expr . expr
+    (13) expr -> . ID . expr
+    (14) expr -> . ID . ID
+    (15) expr -> . STRING
+    (16) expr -> . NUMBER
+    (17) expr -> . expr OR expr
+    (18) expr -> . expr AND expr
+    (19) expr -> . expr GT expr
+    (20) expr -> . expr LT expr
+    (21) expr -> . expr EQ expr
+    (22) expr -> . expr NE expr
+    (23) expr -> . expr GE expr
+    (24) expr -> . expr LE expr
+    (25) expr -> . expr DIVIDE expr
+    (26) expr -> . expr TIMES expr
+    (27) expr -> . expr MINUS expr
+    (28) expr -> . expr PLUS expr
+    FUNC            shift and go to state 3
+    IF              shift and go to state 5
+    WHILE           shift and go to state 6
+    RETURN          shift and go to state 7
+    PRINT           shift and go to state 8
+    ID              shift and go to state 4
+    (               shift and go to state 9
+    MINUS           shift and go to state 10
+    OBJECT          shift and go to state 11
+    INPUT           shift and go to state 12
+    STRING          shift and go to state 13
+    NUMBER          shift and go to state 14
+
+    stmt                           shift and go to state 1
+    expr                           shift and go to state 2
+
+state 1
+
+    (0) S' -> stmt .
+    (31) stmt -> stmt . ;
+    (32) stmt -> stmt . ; stmt
+    ;               shift and go to state 15
+
+
+state 2
+
+    (29) stmt -> expr . ;
+    (30) stmt -> expr . ; stmt
+    (41) stmt -> expr . = expr
+    (11) expr -> expr . . ID
+    (12) expr -> expr . . expr
+    (17) expr -> expr . OR expr
+    (18) expr -> expr . AND expr
+    (19) expr -> expr . GT expr
+    (20) expr -> expr . LT expr
+    (21) expr -> expr . EQ expr
+    (22) expr -> expr . NE expr
+    (23) expr -> expr . GE expr
+    (24) expr -> expr . LE expr
+    (25) expr -> expr . DIVIDE expr
+    (26) expr -> expr . TIMES expr
+    (27) expr -> expr . MINUS expr
+    (28) expr -> expr . PLUS expr
+    ;               shift and go to state 16
+    =               shift and go to state 17
+    .               shift and go to state 18
+    OR              shift and go to state 19
+    AND             shift and go to state 20
+    GT              shift and go to state 21
+    LT              shift and go to state 22
+    EQ              shift and go to state 23
+    NE              shift and go to state 24
+    GE              shift and go to state 25
+    LE              shift and go to state 26
+    DIVIDE          shift and go to state 27
+    TIMES           shift and go to state 28
+    MINUS           shift and go to state 29
+    PLUS            shift and go to state 30
+
+
+state 3
+
+    (33) stmt -> FUNC . ID { stmt }
+    (34) stmt -> FUNC . ID expr { stmt }
+    (35) stmt -> FUNC . ID param { stmt }
+    ID              shift and go to state 31
+
+
+state 4
+
+    (42) stmt -> ID . = expr
+    (7) expr -> ID . ( )
+    (8) expr -> ID . ( expr )
+    (9) expr -> ID . ( param )
+    (10) expr -> ID .
+    (13) expr -> ID . . expr
+    (14) expr -> ID . . ID
+  ! shift/reduce conflict for = resolved as shift
+  ! shift/reduce conflict for . resolved as shift
+    =               shift and go to state 32
+    (               shift and go to state 33
+    ;               reduce using rule 10 (expr -> ID .)
+    OR              reduce using rule 10 (expr -> ID .)
+    AND             reduce using rule 10 (expr -> ID .)
+    GT              reduce using rule 10 (expr -> ID .)
+    LT              reduce using rule 10 (expr -> ID .)
+    EQ              reduce using rule 10 (expr -> ID .)
+    NE              reduce using rule 10 (expr -> ID .)
+    GE              reduce using rule 10 (expr -> ID .)
+    LE              reduce using rule 10 (expr -> ID .)
+    DIVIDE          reduce using rule 10 (expr -> ID .)
+    TIMES           reduce using rule 10 (expr -> ID .)
+    MINUS           reduce using rule 10 (expr -> ID .)
+    PLUS            reduce using rule 10 (expr -> ID .)
+    .               shift and go to state 34
+
+
+state 5
+
+    (36) stmt -> IF . expr { stmt } ELSE { stmt }
+    (37) stmt -> IF . expr { stmt }
+    (1) expr -> . ( expr )
+    (2) expr -> . MINUS expr
+    (3) expr -> . OBJECT
+    (4) expr -> . INPUT ( expr )
+    (5) expr -> . INPUT
+    (6) expr -> . PRINT
+    (7) expr -> . ID ( )
+    (8) expr -> . ID ( expr )
+    (9) expr -> . ID ( param )
+    (10) expr -> . ID
+    (11) expr -> . expr . ID
+    (12) expr -> . expr . expr
+    (13) expr -> . ID . expr
+    (14) expr -> . ID . ID
+    (15) expr -> . STRING
+    (16) expr -> . NUMBER
+    (17) expr -> . expr OR expr
+    (18) expr -> . expr AND expr
+    (19) expr -> . expr GT expr
+    (20) expr -> . expr LT expr
+    (21) expr -> . expr EQ expr
+    (22) expr -> . expr NE expr
+    (23) expr -> . expr GE expr
+    (24) expr -> . expr LE expr
+    (25) expr -> . expr DIVIDE expr
+    (26) expr -> . expr TIMES expr
+    (27) expr -> . expr MINUS expr
+    (28) expr -> . expr PLUS expr
+    (               shift and go to state 9
+    MINUS           shift and go to state 10
+    OBJECT          shift and go to state 11
+    INPUT           shift and go to state 12
+    PRINT           shift and go to state 36
+    ID              shift and go to state 37
+    STRING          shift and go to state 13
+    NUMBER          shift and go to state 14
+
+    expr                           shift and go to state 35
+
+state 6
+
+    (38) stmt -> WHILE . expr { stmt }
+    (1) expr -> . ( expr )
+    (2) expr -> . MINUS expr
+    (3) expr -> . OBJECT
+    (4) expr -> . INPUT ( expr )
+    (5) expr -> . INPUT
+    (6) expr -> . PRINT
+    (7) expr -> . ID ( )
+    (8) expr -> . ID ( expr )
+    (9) expr -> . ID ( param )
+    (10) expr -> . ID
+    (11) expr -> . expr . ID
+    (12) expr -> . expr . expr
+    (13) expr -> . ID . expr
+    (14) expr -> . ID . ID
+    (15) expr -> . STRING
+    (16) expr -> . NUMBER
+    (17) expr -> . expr OR expr
+    (18) expr -> . expr AND expr
+    (19) expr -> . expr GT expr
+    (20) expr -> . expr LT expr
+    (21) expr -> . expr EQ expr
+    (22) expr -> . expr NE expr
+    (23) expr -> . expr GE expr
+    (24) expr -> . expr LE expr
+    (25) expr -> . expr DIVIDE expr
+    (26) expr -> . expr TIMES expr
+    (27) expr -> . expr MINUS expr
+    (28) expr -> . expr PLUS expr
+    (               shift and go to state 9
+    MINUS           shift and go to state 10
+    OBJECT          shift and go to state 11
+    INPUT           shift and go to state 12
+    PRINT           shift and go to state 36
+    ID              shift and go to state 37
+    STRING          shift and go to state 13
+    NUMBER          shift and go to state 14
+
+    expr                           shift and go to state 38
+
+state 7
+
+    (39) stmt -> RETURN . expr
+    (1) expr -> . ( expr )
+    (2) expr -> . MINUS expr
+    (3) expr -> . OBJECT
+    (4) expr -> . INPUT ( expr )
+    (5) expr -> . INPUT
+    (6) expr -> . PRINT
+    (7) expr -> . ID ( )
+    (8) expr -> . ID ( expr )
+    (9) expr -> . ID ( param )
+    (10) expr -> . ID
+    (11) expr -> . expr . ID
+    (12) expr -> . expr . expr
+    (13) expr -> . ID . expr
+    (14) expr -> . ID . ID
+    (15) expr -> . STRING
+    (16) expr -> . NUMBER
+    (17) expr -> . expr OR expr
+    (18) expr -> . expr AND expr
+    (19) expr -> . expr GT expr
+    (20) expr -> . expr LT expr
+    (21) expr -> . expr EQ expr
+    (22) expr -> . expr NE expr
+    (23) expr -> . expr GE expr
+    (24) expr -> . expr LE expr
+    (25) expr -> . expr DIVIDE expr
+    (26) expr -> . expr TIMES expr
+    (27) expr -> . expr MINUS expr
+    (28) expr -> . expr PLUS expr
+    (               shift and go to state 9
+    MINUS           shift and go to state 10
+    OBJECT          shift and go to state 11
+    INPUT           shift and go to state 12
+    PRINT           shift and go to state 36
+    ID              shift and go to state 37
+    STRING          shift and go to state 13
+    NUMBER          shift and go to state 14
+
+    expr                           shift and go to state 39
+
+state 8
+
+    (40) stmt -> PRINT . ( expr )
+    (6) expr -> PRINT .
+    (               shift and go to state 40
+    ;               reduce using rule 6 (expr -> PRINT .)
+    =               reduce using rule 6 (expr -> PRINT .)
+    .               reduce using rule 6 (expr -> PRINT .)
+    OR              reduce using rule 6 (expr -> PRINT .)
+    AND             reduce using rule 6 (expr -> PRINT .)
+    GT              reduce using rule 6 (expr -> PRINT .)
+    LT              reduce using rule 6 (expr -> PRINT .)
+    EQ              reduce using rule 6 (expr -> PRINT .)
+    NE              reduce using rule 6 (expr -> PRINT .)
+    GE              reduce using rule 6 (expr -> PRINT .)
+    LE              reduce using rule 6 (expr -> PRINT .)
+    DIVIDE          reduce using rule 6 (expr -> PRINT .)
+    TIMES           reduce using rule 6 (expr -> PRINT .)
+    MINUS           reduce using rule 6 (expr -> PRINT .)
+    PLUS            reduce using rule 6 (expr -> PRINT .)
+
+
+state 9
+
+    (1) expr -> ( . expr )
+    (1) expr -> . ( expr )
+    (2) expr -> . MINUS expr
+    (3) expr -> . OBJECT
+    (4) expr -> . INPUT ( expr )
+    (5) expr -> . INPUT
+    (6) expr -> . PRINT
+    (7) expr -> . ID ( )
+    (8) expr -> . ID ( expr )
+    (9) expr -> . ID ( param )
+    (10) expr -> . ID
+    (11) expr -> . expr . ID
+    (12) expr -> . expr . expr
+    (13) expr -> . ID . expr
+    (14) expr -> . ID . ID
+    (15) expr -> . STRING
+    (16) expr -> . NUMBER
+    (17) expr -> . expr OR expr
+    (18) expr -> . expr AND expr
+    (19) expr -> . expr GT expr
+    (20) expr -> . expr LT expr
+    (21) expr -> . expr EQ expr
+    (22) expr -> . expr NE expr
+    (23) expr -> . expr GE expr
+    (24) expr -> . expr LE expr
+    (25) expr -> . expr DIVIDE expr
+    (26) expr -> . expr TIMES expr
+    (27) expr -> . expr MINUS expr
+    (28) expr -> . expr PLUS expr
+    (               shift and go to state 9
+    MINUS           shift and go to state 10
+    OBJECT          shift and go to state 11
+    INPUT           shift and go to state 12
+    PRINT           shift and go to state 36
+    ID              shift and go to state 37
+    STRING          shift and go to state 13
+    NUMBER          shift and go to state 14
+
+    expr                           shift and go to state 41
+
+state 10
+
+    (2) expr -> MINUS . expr
+    (1) expr -> . ( expr )
+    (2) expr -> . MINUS expr
+    (3) expr -> . OBJECT
+    (4) expr -> . INPUT ( expr )
+    (5) expr -> . INPUT
+    (6) expr -> . PRINT
+    (7) expr -> . ID ( )
+    (8) expr -> . ID ( expr )
+    (9) expr -> . ID ( param )
+    (10) expr -> . ID
+    (11) expr -> . expr . ID
+    (12) expr -> . expr . expr
+    (13) expr -> . ID . expr
+    (14) expr -> . ID . ID
+    (15) expr -> . STRING
+    (16) expr -> . NUMBER
+    (17) expr -> . expr OR expr
+    (18) expr -> . expr AND expr
+    (19) expr -> . expr GT expr
+    (20) expr -> . expr LT expr
+    (21) expr -> . expr EQ expr
+    (22) expr -> . expr NE expr
+    (23) expr -> . expr GE expr
+    (24) expr -> . expr LE expr
+    (25) expr -> . expr DIVIDE expr
+    (26) expr -> . expr TIMES expr
+    (27) expr -> . expr MINUS expr
+    (28) expr -> . expr PLUS expr
+    (               shift and go to state 9
+    MINUS           shift and go to state 10
+    OBJECT          shift and go to state 11
+    INPUT           shift and go to state 12
+    PRINT           shift and go to state 36
+    ID              shift and go to state 37
+    STRING          shift and go to state 13
+    NUMBER          shift and go to state 14
+
+    expr                           shift and go to state 42
+
+state 11
+
+    (3) expr -> OBJECT .
+    ;               reduce using rule 3 (expr -> OBJECT .)
+    =               reduce using rule 3 (expr -> OBJECT .)
+    .               reduce using rule 3 (expr -> OBJECT .)
+    OR              reduce using rule 3 (expr -> OBJECT .)
+    AND             reduce using rule 3 (expr -> OBJECT .)
+    GT              reduce using rule 3 (expr -> OBJECT .)
+    LT              reduce using rule 3 (expr -> OBJECT .)
+    EQ              reduce using rule 3 (expr -> OBJECT .)
+    NE              reduce using rule 3 (expr -> OBJECT .)
+    GE              reduce using rule 3 (expr -> OBJECT .)
+    LE              reduce using rule 3 (expr -> OBJECT .)
+    DIVIDE          reduce using rule 3 (expr -> OBJECT .)
+    TIMES           reduce using rule 3 (expr -> OBJECT .)
+    MINUS           reduce using rule 3 (expr -> OBJECT .)
+    PLUS            reduce using rule 3 (expr -> OBJECT .)
+    {               reduce using rule 3 (expr -> OBJECT .)
+    $end            reduce using rule 3 (expr -> OBJECT .)
+    }               reduce using rule 3 (expr -> OBJECT .)
+    )               reduce using rule 3 (expr -> OBJECT .)
+    ,               reduce using rule 3 (expr -> OBJECT .)
+
+
+state 12
+
+    (4) expr -> INPUT . ( expr )
+    (5) expr -> INPUT .
+    (               shift and go to state 43
+    ;               reduce using rule 5 (expr -> INPUT .)
+    =               reduce using rule 5 (expr -> INPUT .)
+    .               reduce using rule 5 (expr -> INPUT .)
+    OR              reduce using rule 5 (expr -> INPUT .)
+    AND             reduce using rule 5 (expr -> INPUT .)
+    GT              reduce using rule 5 (expr -> INPUT .)
+    LT              reduce using rule 5 (expr -> INPUT .)
+    EQ              reduce using rule 5 (expr -> INPUT .)
+    NE              reduce using rule 5 (expr -> INPUT .)
+    GE              reduce using rule 5 (expr -> INPUT .)
+    LE              reduce using rule 5 (expr -> INPUT .)
+    DIVIDE          reduce using rule 5 (expr -> INPUT .)
+    TIMES           reduce using rule 5 (expr -> INPUT .)
+    MINUS           reduce using rule 5 (expr -> INPUT .)
+    PLUS            reduce using rule 5 (expr -> INPUT .)
+    {               reduce using rule 5 (expr -> INPUT .)
+    $end            reduce using rule 5 (expr -> INPUT .)
+    }               reduce using rule 5 (expr -> INPUT .)
+    )               reduce using rule 5 (expr -> INPUT .)
+    ,               reduce using rule 5 (expr -> INPUT .)
+
+
+state 13
+
+    (15) expr -> STRING .
+    ;               reduce using rule 15 (expr -> STRING .)
+    =               reduce using rule 15 (expr -> STRING .)
+    .               reduce using rule 15 (expr -> STRING .)
+    OR              reduce using rule 15 (expr -> STRING .)
+    AND             reduce using rule 15 (expr -> STRING .)
+    GT              reduce using rule 15 (expr -> STRING .)
+    LT              reduce using rule 15 (expr -> STRING .)
+    EQ              reduce using rule 15 (expr -> STRING .)
+    NE              reduce using rule 15 (expr -> STRING .)
+    GE              reduce using rule 15 (expr -> STRING .)
+    LE              reduce using rule 15 (expr -> STRING .)
+    DIVIDE          reduce using rule 15 (expr -> STRING .)
+    TIMES           reduce using rule 15 (expr -> STRING .)
+    MINUS           reduce using rule 15 (expr -> STRING .)
+    PLUS            reduce using rule 15 (expr -> STRING .)
+    {               reduce using rule 15 (expr -> STRING .)
+    $end            reduce using rule 15 (expr -> STRING .)
+    }               reduce using rule 15 (expr -> STRING .)
+    )               reduce using rule 15 (expr -> STRING .)
+    ,               reduce using rule 15 (expr -> STRING .)
+
+
+state 14
+
+    (16) expr -> NUMBER .
+    ;               reduce using rule 16 (expr -> NUMBER .)
+    =               reduce using rule 16 (expr -> NUMBER .)
+    .               reduce using rule 16 (expr -> NUMBER .)
+    OR              reduce using rule 16 (expr -> NUMBER .)
+    AND             reduce using rule 16 (expr -> NUMBER .)
+    GT              reduce using rule 16 (expr -> NUMBER .)
+    LT              reduce using rule 16 (expr -> NUMBER .)
+    EQ              reduce using rule 16 (expr -> NUMBER .)
+    NE              reduce using rule 16 (expr -> NUMBER .)
+    GE              reduce using rule 16 (expr -> NUMBER .)
+    LE              reduce using rule 16 (expr -> NUMBER .)
+    DIVIDE          reduce using rule 16 (expr -> NUMBER .)
+    TIMES           reduce using rule 16 (expr -> NUMBER .)
+    MINUS           reduce using rule 16 (expr -> NUMBER .)
+    PLUS            reduce using rule 16 (expr -> NUMBER .)
+    {               reduce using rule 16 (expr -> NUMBER .)
+    $end            reduce using rule 16 (expr -> NUMBER .)
+    }               reduce using rule 16 (expr -> NUMBER .)
+    )               reduce using rule 16 (expr -> NUMBER .)
+    ,               reduce using rule 16 (expr -> NUMBER .)
+
+
+state 15
+
+    (31) stmt -> stmt ; .
+    (32) stmt -> stmt ; . stmt
+    (29) stmt -> . expr ;
+    (30) stmt -> . expr ; stmt
+    (31) stmt -> . stmt ;
+    (32) stmt -> . stmt ; stmt
+    (33) stmt -> . FUNC ID { stmt }
+    (34) stmt -> . FUNC ID expr { stmt }
+    (35) stmt -> . FUNC ID param { stmt }
+    (36) stmt -> . IF expr { stmt } ELSE { stmt }
+    (37) stmt -> . IF expr { stmt }
+    (38) stmt -> . WHILE expr { stmt }
+    (39) stmt -> . RETURN expr
+    (40) stmt -> . PRINT ( expr )
+    (41) stmt -> . expr = expr
+    (42) stmt -> . ID = expr
+    (1) expr -> . ( expr )
+    (2) expr -> . MINUS expr
+    (3) expr -> . OBJECT
+    (4) expr -> . INPUT ( expr )
+    (5) expr -> . INPUT
+    (6) expr -> . PRINT
+    (7) expr -> . ID ( )
+    (8) expr -> . ID ( expr )
+    (9) expr -> . ID ( param )
+    (10) expr -> . ID
+    (11) expr -> . expr . ID
+    (12) expr -> . expr . expr
+    (13) expr -> . ID . expr
+    (14) expr -> . ID . ID
+    (15) expr -> . STRING
+    (16) expr -> . NUMBER
+    (17) expr -> . expr OR expr
+    (18) expr -> . expr AND expr
+    (19) expr -> . expr GT expr
+    (20) expr -> . expr LT expr
+    (21) expr -> . expr EQ expr
+    (22) expr -> . expr NE expr
+    (23) expr -> . expr GE expr
+    (24) expr -> . expr LE expr
+    (25) expr -> . expr DIVIDE expr
+    (26) expr -> . expr TIMES expr
+    (27) expr -> . expr MINUS expr
+    (28) expr -> . expr PLUS expr
+    ;               reduce using rule 31 (stmt -> stmt ; .)
+    $end            reduce using rule 31 (stmt -> stmt ; .)
+    }               reduce using rule 31 (stmt -> stmt ; .)
+    FUNC            shift and go to state 3
+    IF              shift and go to state 5
+    WHILE           shift and go to state 6
+    RETURN          shift and go to state 7
+    PRINT           shift and go to state 8
+    ID              shift and go to state 4
+    (               shift and go to state 9
+    MINUS           shift and go to state 10
+    OBJECT          shift and go to state 11
+    INPUT           shift and go to state 12
+    STRING          shift and go to state 13
+    NUMBER          shift and go to state 14
+
+    stmt                           shift and go to state 44
+    expr                           shift and go to state 2
+
+state 16
+
+    (29) stmt -> expr ; .
+    (30) stmt -> expr ; . stmt
+    (29) stmt -> . expr ;
+    (30) stmt -> . expr ; stmt
+    (31) stmt -> . stmt ;
+    (32) stmt -> . stmt ; stmt
+    (33) stmt -> . FUNC ID { stmt }
+    (34) stmt -> . FUNC ID expr { stmt }
+    (35) stmt -> . FUNC ID param { stmt }
+    (36) stmt -> . IF expr { stmt } ELSE { stmt }
+    (37) stmt -> . IF expr { stmt }
+    (38) stmt -> . WHILE expr { stmt }
+    (39) stmt -> . RETURN expr
+    (40) stmt -> . PRINT ( expr )
+    (41) stmt -> . expr = expr
+    (42) stmt -> . ID = expr
+    (1) expr -> . ( expr )
+    (2) expr -> . MINUS expr
+    (3) expr -> . OBJECT
+    (4) expr -> . INPUT ( expr )
+    (5) expr -> . INPUT
+    (6) expr -> . PRINT
+    (7) expr -> . ID ( )
+    (8) expr -> . ID ( expr )
+    (9) expr -> . ID ( param )
+    (10) expr -> . ID
+    (11) expr -> . expr . ID
+    (12) expr -> . expr . expr
+    (13) expr -> . ID . expr
+    (14) expr -> . ID . ID
+    (15) expr -> . STRING
+    (16) expr -> . NUMBER
+    (17) expr -> . expr OR expr
+    (18) expr -> . expr AND expr
+    (19) expr -> . expr GT expr
+    (20) expr -> . expr LT expr
+    (21) expr -> . expr EQ expr
+    (22) expr -> . expr NE expr
+    (23) expr -> . expr GE expr
+    (24) expr -> . expr LE expr
+    (25) expr -> . expr DIVIDE expr
+    (26) expr -> . expr TIMES expr
+    (27) expr -> . expr MINUS expr
+    (28) expr -> . expr PLUS expr
+    ;               reduce using rule 29 (stmt -> expr ; .)
+    $end            reduce using rule 29 (stmt -> expr ; .)
+    }               reduce using rule 29 (stmt -> expr ; .)
+    FUNC            shift and go to state 3
+    IF              shift and go to state 5
+    WHILE           shift and go to state 6
+    RETURN          shift and go to state 7
+    PRINT           shift and go to state 8
+    ID              shift and go to state 4
+    (               shift and go to state 9
+    MINUS           shift and go to state 10
+    OBJECT          shift and go to state 11
+    INPUT           shift and go to state 12
+    STRING          shift and go to state 13
+    NUMBER          shift and go to state 14
+
+    expr                           shift and go to state 2
+    stmt                           shift and go to state 45
+
+state 17
+
+    (41) stmt -> expr = . expr
+    (1) expr -> . ( expr )
+    (2) expr -> . MINUS expr
+    (3) expr -> . OBJECT
+    (4) expr -> . INPUT ( expr )
+    (5) expr -> . INPUT
+    (6) expr -> . PRINT
+    (7) expr -> . ID ( )
+    (8) expr -> . ID ( expr )
+    (9) expr -> . ID ( param )
+    (10) expr -> . ID
+    (11) expr -> . expr . ID
+    (12) expr -> . expr . expr
+    (13) expr -> . ID . expr
+    (14) expr -> . ID . ID
+    (15) expr -> . STRING
+    (16) expr -> . NUMBER
+    (17) expr -> . expr OR expr
+    (18) expr -> . expr AND expr
+    (19) expr -> . expr GT expr
+    (20) expr -> . expr LT expr
+    (21) expr -> . expr EQ expr
+    (22) expr -> . expr NE expr
+    (23) expr -> . expr GE expr
+    (24) expr -> . expr LE expr
+    (25) expr -> . expr DIVIDE expr
+    (26) expr -> . expr TIMES expr
+    (27) expr -> . expr MINUS expr
+    (28) expr -> . expr PLUS expr
+    (               shift and go to state 9
+    MINUS           shift and go to state 10
+    OBJECT          shift and go to state 11
+    INPUT           shift and go to state 12
+    PRINT           shift and go to state 36
+    ID              shift and go to state 37
+    STRING          shift and go to state 13
+    NUMBER          shift and go to state 14
+
+    expr                           shift and go to state 46
+
+state 18
+
+    (11) expr -> expr . . ID
+    (12) expr -> expr . . expr
+    (1) expr -> . ( expr )
+    (2) expr -> . MINUS expr
+    (3) expr -> . OBJECT
+    (4) expr -> . INPUT ( expr )
+    (5) expr -> . INPUT
+    (6) expr -> . PRINT
+    (7) expr -> . ID ( )
+    (8) expr -> . ID ( expr )
+    (9) expr -> . ID ( param )
+    (10) expr -> . ID
+    (11) expr -> . expr . ID
+    (12) expr -> . expr . expr
+    (13) expr -> . ID . expr
+    (14) expr -> . ID . ID
+    (15) expr -> . STRING
+    (16) expr -> . NUMBER
+    (17) expr -> . expr OR expr
+    (18) expr -> . expr AND expr
+    (19) expr -> . expr GT expr
+    (20) expr -> . expr LT expr
+    (21) expr -> . expr EQ expr
+    (22) expr -> . expr NE expr
+    (23) expr -> . expr GE expr
+    (24) expr -> . expr LE expr
+    (25) expr -> . expr DIVIDE expr
+    (26) expr -> . expr TIMES expr
+    (27) expr -> . expr MINUS expr
+    (28) expr -> . expr PLUS expr
+    ID              shift and go to state 48
+    (               shift and go to state 9
+    MINUS           shift and go to state 10
+    OBJECT          shift and go to state 11
+    INPUT           shift and go to state 12
+    PRINT           shift and go to state 36
+    STRING          shift and go to state 13
+    NUMBER          shift and go to state 14
+
+    expr                           shift and go to state 47
+
+state 19
+
+    (17) expr -> expr OR . expr
+    (1) expr -> . ( expr )
+    (2) expr -> . MINUS expr
+    (3) expr -> . OBJECT
+    (4) expr -> . INPUT ( expr )
+    (5) expr -> . INPUT
+    (6) expr -> . PRINT
+    (7) expr -> . ID ( )
+    (8) expr -> . ID ( expr )
+    (9) expr -> . ID ( param )
+    (10) expr -> . ID
+    (11) expr -> . expr . ID
+    (12) expr -> . expr . expr
+    (13) expr -> . ID . expr
+    (14) expr -> . ID . ID
+    (15) expr -> . STRING
+    (16) expr -> . NUMBER
+    (17) expr -> . expr OR expr
+    (18) expr -> . expr AND expr
+    (19) expr -> . expr GT expr
+    (20) expr -> . expr LT expr
+    (21) expr -> . expr EQ expr
+    (22) expr -> . expr NE expr
+    (23) expr -> . expr GE expr
+    (24) expr -> . expr LE expr
+    (25) expr -> . expr DIVIDE expr
+    (26) expr -> . expr TIMES expr
+    (27) expr -> . expr MINUS expr
+    (28) expr -> . expr PLUS expr
+    (               shift and go to state 9
+    MINUS           shift and go to state 10
+    OBJECT          shift and go to state 11
+    INPUT           shift and go to state 12
+    PRINT           shift and go to state 36
+    ID              shift and go to state 37
+    STRING          shift and go to state 13
+    NUMBER          shift and go to state 14
+
+    expr                           shift and go to state 49
+
+state 20
+
+    (18) expr -> expr AND . expr
+    (1) expr -> . ( expr )
+    (2) expr -> . MINUS expr
+    (3) expr -> . OBJECT
+    (4) expr -> . INPUT ( expr )
+    (5) expr -> . INPUT
+    (6) expr -> . PRINT
+    (7) expr -> . ID ( )
+    (8) expr -> . ID ( expr )
+    (9) expr -> . ID ( param )
+    (10) expr -> . ID
+    (11) expr -> . expr . ID
+    (12) expr -> . expr . expr
+    (13) expr -> . ID . expr
+    (14) expr -> . ID . ID
+    (15) expr -> . STRING
+    (16) expr -> . NUMBER
+    (17) expr -> . expr OR expr
+    (18) expr -> . expr AND expr
+    (19) expr -> . expr GT expr
+    (20) expr -> . expr LT expr
+    (21) expr -> . expr EQ expr
+    (22) expr -> . expr NE expr
+    (23) expr -> . expr GE expr
+    (24) expr -> . expr LE expr
+    (25) expr -> . expr DIVIDE expr
+    (26) expr -> . expr TIMES expr
+    (27) expr -> . expr MINUS expr
+    (28) expr -> . expr PLUS expr
+    (               shift and go to state 9
+    MINUS           shift and go to state 10
+    OBJECT          shift and go to state 11
+    INPUT           shift and go to state 12
+    PRINT           shift and go to state 36
+    ID              shift and go to state 37
+    STRING          shift and go to state 13
+    NUMBER          shift and go to state 14
+
+    expr                           shift and go to state 50
+
+state 21
+
+    (19) expr -> expr GT . expr
+    (1) expr -> . ( expr )
+    (2) expr -> . MINUS expr
+    (3) expr -> . OBJECT
+    (4) expr -> . INPUT ( expr )
+    (5) expr -> . INPUT
+    (6) expr -> . PRINT
+    (7) expr -> . ID ( )
+    (8) expr -> . ID ( expr )
+    (9) expr -> . ID ( param )
+    (10) expr -> . ID
+    (11) expr -> . expr . ID
+    (12) expr -> . expr . expr
+    (13) expr -> . ID . expr
+    (14) expr -> . ID . ID
+    (15) expr -> . STRING
+    (16) expr -> . NUMBER
+    (17) expr -> . expr OR expr
+    (18) expr -> . expr AND expr
+    (19) expr -> . expr GT expr
+    (20) expr -> . expr LT expr
+    (21) expr -> . expr EQ expr
+    (22) expr -> . expr NE expr
+    (23) expr -> . expr GE expr
+    (24) expr -> . expr LE expr
+    (25) expr -> . expr DIVIDE expr
+    (26) expr -> . expr TIMES expr
+    (27) expr -> . expr MINUS expr
+    (28) expr -> . expr PLUS expr
+    (               shift and go to state 9
+    MINUS           shift and go to state 10
+    OBJECT          shift and go to state 11
+    INPUT           shift and go to state 12
+    PRINT           shift and go to state 36
+    ID              shift and go to state 37
+    STRING          shift and go to state 13
+    NUMBER          shift and go to state 14
+
+    expr                           shift and go to state 51
+
+state 22
+
+    (20) expr -> expr LT . expr
+    (1) expr -> . ( expr )
+    (2) expr -> . MINUS expr
+    (3) expr -> . OBJECT
+    (4) expr -> . INPUT ( expr )
+    (5) expr -> . INPUT
+    (6) expr -> . PRINT
+    (7) expr -> . ID ( )
+    (8) expr -> . ID ( expr )
+    (9) expr -> . ID ( param )
+    (10) expr -> . ID
+    (11) expr -> . expr . ID
+    (12) expr -> . expr . expr
+    (13) expr -> . ID . expr
+    (14) expr -> . ID . ID
+    (15) expr -> . STRING
+    (16) expr -> . NUMBER
+    (17) expr -> . expr OR expr
+    (18) expr -> . expr AND expr
+    (19) expr -> . expr GT expr
+    (20) expr -> . expr LT expr
+    (21) expr -> . expr EQ expr
+    (22) expr -> . expr NE expr
+    (23) expr -> . expr GE expr
+    (24) expr -> . expr LE expr
+    (25) expr -> . expr DIVIDE expr
+    (26) expr -> . expr TIMES expr
+    (27) expr -> . expr MINUS expr
+    (28) expr -> . expr PLUS expr
+    (               shift and go to state 9
+    MINUS           shift and go to state 10
+    OBJECT          shift and go to state 11
+    INPUT           shift and go to state 12
+    PRINT           shift and go to state 36
+    ID              shift and go to state 37
+    STRING          shift and go to state 13
+    NUMBER          shift and go to state 14
+
+    expr                           shift and go to state 52
+
+state 23
+
+    (21) expr -> expr EQ . expr
+    (1) expr -> . ( expr )
+    (2) expr -> . MINUS expr
+    (3) expr -> . OBJECT
+    (4) expr -> . INPUT ( expr )
+    (5) expr -> . INPUT
+    (6) expr -> . PRINT
+    (7) expr -> . ID ( )
+    (8) expr -> . ID ( expr )
+    (9) expr -> . ID ( param )
+    (10) expr -> . ID
+    (11) expr -> . expr . ID
+    (12) expr -> . expr . expr
+    (13) expr -> . ID . expr
+    (14) expr -> . ID . ID
+    (15) expr -> . STRING
+    (16) expr -> . NUMBER
+    (17) expr -> . expr OR expr
+    (18) expr -> . expr AND expr
+    (19) expr -> . expr GT expr
+    (20) expr -> . expr LT expr
+    (21) expr -> . expr EQ expr
+    (22) expr -> . expr NE expr
+    (23) expr -> . expr GE expr
+    (24) expr -> . expr LE expr
+    (25) expr -> . expr DIVIDE expr
+    (26) expr -> . expr TIMES expr
+    (27) expr -> . expr MINUS expr
+    (28) expr -> . expr PLUS expr
+    (               shift and go to state 9
+    MINUS           shift and go to state 10
+    OBJECT          shift and go to state 11
+    INPUT           shift and go to state 12
+    PRINT           shift and go to state 36
+    ID              shift and go to state 37
+    STRING          shift and go to state 13
+    NUMBER          shift and go to state 14
+
+    expr                           shift and go to state 53
+
+state 24
+
+    (22) expr -> expr NE . expr
+    (1) expr -> . ( expr )
+    (2) expr -> . MINUS expr
+    (3) expr -> . OBJECT
+    (4) expr -> . INPUT ( expr )
+    (5) expr -> . INPUT
+    (6) expr -> . PRINT
+    (7) expr -> . ID ( )
+    (8) expr -> . ID ( expr )
+    (9) expr -> . ID ( param )
+    (10) expr -> . ID
+    (11) expr -> . expr . ID
+    (12) expr -> . expr . expr
+    (13) expr -> . ID . expr
+    (14) expr -> . ID . ID
+    (15) expr -> . STRING
+    (16) expr -> . NUMBER
+    (17) expr -> . expr OR expr
+    (18) expr -> . expr AND expr
+    (19) expr -> . expr GT expr
+    (20) expr -> . expr LT expr
+    (21) expr -> . expr EQ expr
+    (22) expr -> . expr NE expr
+    (23) expr -> . expr GE expr
+    (24) expr -> . expr LE expr
+    (25) expr -> . expr DIVIDE expr
+    (26) expr -> . expr TIMES expr
+    (27) expr -> . expr MINUS expr
+    (28) expr -> . expr PLUS expr
+    (               shift and go to state 9
+    MINUS           shift and go to state 10
+    OBJECT          shift and go to state 11
+    INPUT           shift and go to state 12
+    PRINT           shift and go to state 36
+    ID              shift and go to state 37
+    STRING          shift and go to state 13
+    NUMBER          shift and go to state 14
+
+    expr                           shift and go to state 54
+
+state 25
+
+    (23) expr -> expr GE . expr
+    (1) expr -> . ( expr )
+    (2) expr -> . MINUS expr
+    (3) expr -> . OBJECT
+    (4) expr -> . INPUT ( expr )
+    (5) expr -> . INPUT
+    (6) expr -> . PRINT
+    (7) expr -> . ID ( )
+    (8) expr -> . ID ( expr )
+    (9) expr -> . ID ( param )
+    (10) expr -> . ID
+    (11) expr -> . expr . ID
+    (12) expr -> . expr . expr
+    (13) expr -> . ID . expr
+    (14) expr -> . ID . ID
+    (15) expr -> . STRING
+    (16) expr -> . NUMBER
+    (17) expr -> . expr OR expr
+    (18) expr -> . expr AND expr
+    (19) expr -> . expr GT expr
+    (20) expr -> . expr LT expr
+    (21) expr -> . expr EQ expr
+    (22) expr -> . expr NE expr
+    (23) expr -> . expr GE expr
+    (24) expr -> . expr LE expr
+    (25) expr -> . expr DIVIDE expr
+    (26) expr -> . expr TIMES expr
+    (27) expr -> . expr MINUS expr
+    (28) expr -> . expr PLUS expr
+    (               shift and go to state 9
+    MINUS           shift and go to state 10
+    OBJECT          shift and go to state 11
+    INPUT           shift and go to state 12
+    PRINT           shift and go to state 36
+    ID              shift and go to state 37
+    STRING          shift and go to state 13
+    NUMBER          shift and go to state 14
+
+    expr                           shift and go to state 55
+
+state 26
+
+    (24) expr -> expr LE . expr
+    (1) expr -> . ( expr )
+    (2) expr -> . MINUS expr
+    (3) expr -> . OBJECT
+    (4) expr -> . INPUT ( expr )
+    (5) expr -> . INPUT
+    (6) expr -> . PRINT
+    (7) expr -> . ID ( )
+    (8) expr -> . ID ( expr )
+    (9) expr -> . ID ( param )
+    (10) expr -> . ID
+    (11) expr -> . expr . ID
+    (12) expr -> . expr . expr
+    (13) expr -> . ID . expr
+    (14) expr -> . ID . ID
+    (15) expr -> . STRING
+    (16) expr -> . NUMBER
+    (17) expr -> . expr OR expr
+    (18) expr -> . expr AND expr
+    (19) expr -> . expr GT expr
+    (20) expr -> . expr LT expr
+    (21) expr -> . expr EQ expr
+    (22) expr -> . expr NE expr
+    (23) expr -> . expr GE expr
+    (24) expr -> . expr LE expr
+    (25) expr -> . expr DIVIDE expr
+    (26) expr -> . expr TIMES expr
+    (27) expr -> . expr MINUS expr
+    (28) expr -> . expr PLUS expr
+    (               shift and go to state 9
+    MINUS           shift and go to state 10
+    OBJECT          shift and go to state 11
+    INPUT           shift and go to state 12
+    PRINT           shift and go to state 36
+    ID              shift and go to state 37
+    STRING          shift and go to state 13
+    NUMBER          shift and go to state 14
+
+    expr                           shift and go to state 56
+
+state 27
+
+    (25) expr -> expr DIVIDE . expr
+    (1) expr -> . ( expr )
+    (2) expr -> . MINUS expr
+    (3) expr -> . OBJECT
+    (4) expr -> . INPUT ( expr )
+    (5) expr -> . INPUT
+    (6) expr -> . PRINT
+    (7) expr -> . ID ( )
+    (8) expr -> . ID ( expr )
+    (9) expr -> . ID ( param )
+    (10) expr -> . ID
+    (11) expr -> . expr . ID
+    (12) expr -> . expr . expr
+    (13) expr -> . ID . expr
+    (14) expr -> . ID . ID
+    (15) expr -> . STRING
+    (16) expr -> . NUMBER
+    (17) expr -> . expr OR expr
+    (18) expr -> . expr AND expr
+    (19) expr -> . expr GT expr
+    (20) expr -> . expr LT expr
+    (21) expr -> . expr EQ expr
+    (22) expr -> . expr NE expr
+    (23) expr -> . expr GE expr
+    (24) expr -> . expr LE expr
+    (25) expr -> . expr DIVIDE expr
+    (26) expr -> . expr TIMES expr
+    (27) expr -> . expr MINUS expr
+    (28) expr -> . expr PLUS expr
+    (               shift and go to state 9
+    MINUS           shift and go to state 10
+    OBJECT          shift and go to state 11
+    INPUT           shift and go to state 12
+    PRINT           shift and go to state 36
+    ID              shift and go to state 37
+    STRING          shift and go to state 13
+    NUMBER          shift and go to state 14
+
+    expr                           shift and go to state 57
+
+state 28
+
+    (26) expr -> expr TIMES . expr
+    (1) expr -> . ( expr )
+    (2) expr -> . MINUS expr
+    (3) expr -> . OBJECT
+    (4) expr -> . INPUT ( expr )
+    (5) expr -> . INPUT
+    (6) expr -> . PRINT
+    (7) expr -> . ID ( )
+    (8) expr -> . ID ( expr )
+    (9) expr -> . ID ( param )
+    (10) expr -> . ID
+    (11) expr -> . expr . ID
+    (12) expr -> . expr . expr
+    (13) expr -> . ID . expr
+    (14) expr -> . ID . ID
+    (15) expr -> . STRING
+    (16) expr -> . NUMBER
+    (17) expr -> . expr OR expr
+    (18) expr -> . expr AND expr
+    (19) expr -> . expr GT expr
+    (20) expr -> . expr LT expr
+    (21) expr -> . expr EQ expr
+    (22) expr -> . expr NE expr
+    (23) expr -> . expr GE expr
+    (24) expr -> . expr LE expr
+    (25) expr -> . expr DIVIDE expr
+    (26) expr -> . expr TIMES expr
+    (27) expr -> . expr MINUS expr
+    (28) expr -> . expr PLUS expr
+    (               shift and go to state 9
+    MINUS           shift and go to state 10
+    OBJECT          shift and go to state 11
+    INPUT           shift and go to state 12
+    PRINT           shift and go to state 36
+    ID              shift and go to state 37
+    STRING          shift and go to state 13
+    NUMBER          shift and go to state 14
+
+    expr                           shift and go to state 58
+
+state 29
+
+    (27) expr -> expr MINUS . expr
+    (1) expr -> . ( expr )
+    (2) expr -> . MINUS expr
+    (3) expr -> . OBJECT
+    (4) expr -> . INPUT ( expr )
+    (5) expr -> . INPUT
+    (6) expr -> . PRINT
+    (7) expr -> . ID ( )
+    (8) expr -> . ID ( expr )
+    (9) expr -> . ID ( param )
+    (10) expr -> . ID
+    (11) expr -> . expr . ID
+    (12) expr -> . expr . expr
+    (13) expr -> . ID . expr
+    (14) expr -> . ID . ID
+    (15) expr -> . STRING
+    (16) expr -> . NUMBER
+    (17) expr -> . expr OR expr
+    (18) expr -> . expr AND expr
+    (19) expr -> . expr GT expr
+    (20) expr -> . expr LT expr
+    (21) expr -> . expr EQ expr
+    (22) expr -> . expr NE expr
+    (23) expr -> . expr GE expr
+    (24) expr -> . expr LE expr
+    (25) expr -> . expr DIVIDE expr
+    (26) expr -> . expr TIMES expr
+    (27) expr -> . expr MINUS expr
+    (28) expr -> . expr PLUS expr
+    (               shift and go to state 9
+    MINUS           shift and go to state 10
+    OBJECT          shift and go to state 11
+    INPUT           shift and go to state 12
+    PRINT           shift and go to state 36
+    ID              shift and go to state 37
+    STRING          shift and go to state 13
+    NUMBER          shift and go to state 14
+
+    expr                           shift and go to state 59
+
+state 30
+
+    (28) expr -> expr PLUS . expr
+    (1) expr -> . ( expr )
+    (2) expr -> . MINUS expr
+    (3) expr -> . OBJECT
+    (4) expr -> . INPUT ( expr )
+    (5) expr -> . INPUT
+    (6) expr -> . PRINT
+    (7) expr -> . ID ( )
+    (8) expr -> . ID ( expr )
+    (9) expr -> . ID ( param )
+    (10) expr -> . ID
+    (11) expr -> . expr . ID
+    (12) expr -> . expr . expr
+    (13) expr -> . ID . expr
+    (14) expr -> . ID . ID
+    (15) expr -> . STRING
+    (16) expr -> . NUMBER
+    (17) expr -> . expr OR expr
+    (18) expr -> . expr AND expr
+    (19) expr -> . expr GT expr
+    (20) expr -> . expr LT expr
+    (21) expr -> . expr EQ expr
+    (22) expr -> . expr NE expr
+    (23) expr -> . expr GE expr
+    (24) expr -> . expr LE expr
+    (25) expr -> . expr DIVIDE expr
+    (26) expr -> . expr TIMES expr
+    (27) expr -> . expr MINUS expr
+    (28) expr -> . expr PLUS expr
+    (               shift and go to state 9
+    MINUS           shift and go to state 10
+    OBJECT          shift and go to state 11
+    INPUT           shift and go to state 12
+    PRINT           shift and go to state 36
+    ID              shift and go to state 37
+    STRING          shift and go to state 13
+    NUMBER          shift and go to state 14
+
+    expr                           shift and go to state 60
+
+state 31
+
+    (33) stmt -> FUNC ID . { stmt }
+    (34) stmt -> FUNC ID . expr { stmt }
+    (35) stmt -> FUNC ID . param { stmt }
+    (1) expr -> . ( expr )
+    (2) expr -> . MINUS expr
+    (3) expr -> . OBJECT
+    (4) expr -> . INPUT ( expr )
+    (5) expr -> . INPUT
+    (6) expr -> . PRINT
+    (7) expr -> . ID ( )
+    (8) expr -> . ID ( expr )
+    (9) expr -> . ID ( param )
+    (10) expr -> . ID
+    (11) expr -> . expr . ID
+    (12) expr -> . expr . expr
+    (13) expr -> . ID . expr
+    (14) expr -> . ID . ID
+    (15) expr -> . STRING
+    (16) expr -> . NUMBER
+    (17) expr -> . expr OR expr
+    (18) expr -> . expr AND expr
+    (19) expr -> . expr GT expr
+    (20) expr -> . expr LT expr
+    (21) expr -> . expr EQ expr
+    (22) expr -> . expr NE expr
+    (23) expr -> . expr GE expr
+    (24) expr -> . expr LE expr
+    (25) expr -> . expr DIVIDE expr
+    (26) expr -> . expr TIMES expr
+    (27) expr -> . expr MINUS expr
+    (28) expr -> . expr PLUS expr
+    (43) param -> . param , param
+    (44) param -> . expr , param
+    (45) param -> . expr , expr
+    {               shift and go to state 61
+    (               shift and go to state 9
+    MINUS           shift and go to state 10
+    OBJECT          shift and go to state 11
+    INPUT           shift and go to state 12
+    PRINT           shift and go to state 36
+    ID              shift and go to state 37
+    STRING          shift and go to state 13
+    NUMBER          shift and go to state 14
+
+    expr                           shift and go to state 62
+    param                          shift and go to state 63
+
+state 32
+
+    (42) stmt -> ID = . expr
+    (1) expr -> . ( expr )
+    (2) expr -> . MINUS expr
+    (3) expr -> . OBJECT
+    (4) expr -> . INPUT ( expr )
+    (5) expr -> . INPUT
+    (6) expr -> . PRINT
+    (7) expr -> . ID ( )
+    (8) expr -> . ID ( expr )
+    (9) expr -> . ID ( param )
+    (10) expr -> . ID
+    (11) expr -> . expr . ID
+    (12) expr -> . expr . expr
+    (13) expr -> . ID . expr
+    (14) expr -> . ID . ID
+    (15) expr -> . STRING
+    (16) expr -> . NUMBER
+    (17) expr -> . expr OR expr
+    (18) expr -> . expr AND expr
+    (19) expr -> . expr GT expr
+    (20) expr -> . expr LT expr
+    (21) expr -> . expr EQ expr
+    (22) expr -> . expr NE expr
+    (23) expr -> . expr GE expr
+    (24) expr -> . expr LE expr
+    (25) expr -> . expr DIVIDE expr
+    (26) expr -> . expr TIMES expr
+    (27) expr -> . expr MINUS expr
+    (28) expr -> . expr PLUS expr
+    (               shift and go to state 9
+    MINUS           shift and go to state 10
+    OBJECT          shift and go to state 11
+    INPUT           shift and go to state 12
+    PRINT           shift and go to state 36
+    ID              shift and go to state 37
+    STRING          shift and go to state 13
+    NUMBER          shift and go to state 14
+
+    expr                           shift and go to state 64
+
+state 33
+
+    (7) expr -> ID ( . )
+    (8) expr -> ID ( . expr )
+    (9) expr -> ID ( . param )
+    (1) expr -> . ( expr )
+    (2) expr -> . MINUS expr
+    (3) expr -> . OBJECT
+    (4) expr -> . INPUT ( expr )
+    (5) expr -> . INPUT
+    (6) expr -> . PRINT
+    (7) expr -> . ID ( )
+    (8) expr -> . ID ( expr )
+    (9) expr -> . ID ( param )
+    (10) expr -> . ID
+    (11) expr -> . expr . ID
+    (12) expr -> . expr . expr
+    (13) expr -> . ID . expr
+    (14) expr -> . ID . ID
+    (15) expr -> . STRING
+    (16) expr -> . NUMBER
+    (17) expr -> . expr OR expr
+    (18) expr -> . expr AND expr
+    (19) expr -> . expr GT expr
+    (20) expr -> . expr LT expr
+    (21) expr -> . expr EQ expr
+    (22) expr -> . expr NE expr
+    (23) expr -> . expr GE expr
+    (24) expr -> . expr LE expr
+    (25) expr -> . expr DIVIDE expr
+    (26) expr -> . expr TIMES expr
+    (27) expr -> . expr MINUS expr
+    (28) expr -> . expr PLUS expr
+    (43) param -> . param , param
+    (44) param -> . expr , param
+    (45) param -> . expr , expr
+    )               shift and go to state 65
+    (               shift and go to state 9
+    MINUS           shift and go to state 10
+    OBJECT          shift and go to state 11
+    INPUT           shift and go to state 12
+    PRINT           shift and go to state 36
+    ID              shift and go to state 37
+    STRING          shift and go to state 13
+    NUMBER          shift and go to state 14
+
+    expr                           shift and go to state 66
+    param                          shift and go to state 67
+
+state 34
+
+    (13) expr -> ID . . expr
+    (14) expr -> ID . . ID
+    (1) expr -> . ( expr )
+    (2) expr -> . MINUS expr
+    (3) expr -> . OBJECT
+    (4) expr -> . INPUT ( expr )
+    (5) expr -> . INPUT
+    (6) expr -> . PRINT
+    (7) expr -> . ID ( )
+    (8) expr -> . ID ( expr )
+    (9) expr -> . ID ( param )
+    (10) expr -> . ID
+    (11) expr -> . expr . ID
+    (12) expr -> . expr . expr
+    (13) expr -> . ID . expr
+    (14) expr -> . ID . ID
+    (15) expr -> . STRING
+    (16) expr -> . NUMBER
+    (17) expr -> . expr OR expr
+    (18) expr -> . expr AND expr
+    (19) expr -> . expr GT expr
+    (20) expr -> . expr LT expr
+    (21) expr -> . expr EQ expr
+    (22) expr -> . expr NE expr
+    (23) expr -> . expr GE expr
+    (24) expr -> . expr LE expr
+    (25) expr -> . expr DIVIDE expr
+    (26) expr -> . expr TIMES expr
+    (27) expr -> . expr MINUS expr
+    (28) expr -> . expr PLUS expr
+    ID              shift and go to state 68
+    (               shift and go to state 9
+    MINUS           shift and go to state 10
+    OBJECT          shift and go to state 11
+    INPUT           shift and go to state 12
+    PRINT           shift and go to state 36
+    STRING          shift and go to state 13
+    NUMBER          shift and go to state 14
+
+    expr                           shift and go to state 69
+
+state 35
+
+    (36) stmt -> IF expr . { stmt } ELSE { stmt }
+    (37) stmt -> IF expr . { stmt }
+    (11) expr -> expr . . ID
+    (12) expr -> expr . . expr
+    (17) expr -> expr . OR expr
+    (18) expr -> expr . AND expr
+    (19) expr -> expr . GT expr
+    (20) expr -> expr . LT expr
+    (21) expr -> expr . EQ expr
+    (22) expr -> expr . NE expr
+    (23) expr -> expr . GE expr
+    (24) expr -> expr . LE expr
+    (25) expr -> expr . DIVIDE expr
+    (26) expr -> expr . TIMES expr
+    (27) expr -> expr . MINUS expr
+    (28) expr -> expr . PLUS expr
+    {               shift and go to state 70
+    .               shift and go to state 18
+    OR              shift and go to state 19
+    AND             shift and go to state 20
+    GT              shift and go to state 21
+    LT              shift and go to state 22
+    EQ              shift and go to state 23
+    NE              shift and go to state 24
+    GE              shift and go to state 25
+    LE              shift and go to state 26
+    DIVIDE          shift and go to state 27
+    TIMES           shift and go to state 28
+    MINUS           shift and go to state 29
+    PLUS            shift and go to state 30
+
+
+state 36
+
+    (6) expr -> PRINT .
+    {               reduce using rule 6 (expr -> PRINT .)
+    .               reduce using rule 6 (expr -> PRINT .)
+    OR              reduce using rule 6 (expr -> PRINT .)
+    AND             reduce using rule 6 (expr -> PRINT .)
+    GT              reduce using rule 6 (expr -> PRINT .)
+    LT              reduce using rule 6 (expr -> PRINT .)
+    EQ              reduce using rule 6 (expr -> PRINT .)
+    NE              reduce using rule 6 (expr -> PRINT .)
+    GE              reduce using rule 6 (expr -> PRINT .)
+    LE              reduce using rule 6 (expr -> PRINT .)
+    DIVIDE          reduce using rule 6 (expr -> PRINT .)
+    TIMES           reduce using rule 6 (expr -> PRINT .)
+    MINUS           reduce using rule 6 (expr -> PRINT .)
+    PLUS            reduce using rule 6 (expr -> PRINT .)
+    ;               reduce using rule 6 (expr -> PRINT .)
+    $end            reduce using rule 6 (expr -> PRINT .)
+    }               reduce using rule 6 (expr -> PRINT .)
+    )               reduce using rule 6 (expr -> PRINT .)
+    =               reduce using rule 6 (expr -> PRINT .)
+    ,               reduce using rule 6 (expr -> PRINT .)
+
+
+state 37
+
+    (7) expr -> ID . ( )
+    (8) expr -> ID . ( expr )
+    (9) expr -> ID . ( param )
+    (10) expr -> ID .
+    (13) expr -> ID . . expr
+    (14) expr -> ID . . ID
+  ! shift/reduce conflict for . resolved as shift
+    (               shift and go to state 33
+    {               reduce using rule 10 (expr -> ID .)
+    OR              reduce using rule 10 (expr -> ID .)
+    AND             reduce using rule 10 (expr -> ID .)
+    GT              reduce using rule 10 (expr -> ID .)
+    LT              reduce using rule 10 (expr -> ID .)
+    EQ              reduce using rule 10 (expr -> ID .)
+    NE              reduce using rule 10 (expr -> ID .)
+    GE              reduce using rule 10 (expr -> ID .)
+    LE              reduce using rule 10 (expr -> ID .)
+    DIVIDE          reduce using rule 10 (expr -> ID .)
+    TIMES           reduce using rule 10 (expr -> ID .)
+    MINUS           reduce using rule 10 (expr -> ID .)
+    PLUS            reduce using rule 10 (expr -> ID .)
+    ;               reduce using rule 10 (expr -> ID .)
+    $end            reduce using rule 10 (expr -> ID .)
+    }               reduce using rule 10 (expr -> ID .)
+    )               reduce using rule 10 (expr -> ID .)
+    =               reduce using rule 10 (expr -> ID .)
+    ,               reduce using rule 10 (expr -> ID .)
+    .               shift and go to state 34
+
+
+state 38
+
+    (38) stmt -> WHILE expr . { stmt }
+    (11) expr -> expr . . ID
+    (12) expr -> expr . . expr
+    (17) expr -> expr . OR expr
+    (18) expr -> expr . AND expr
+    (19) expr -> expr . GT expr
+    (20) expr -> expr . LT expr
+    (21) expr -> expr . EQ expr
+    (22) expr -> expr . NE expr
+    (23) expr -> expr . GE expr
+    (24) expr -> expr . LE expr
+    (25) expr -> expr . DIVIDE expr
+    (26) expr -> expr . TIMES expr
+    (27) expr -> expr . MINUS expr
+    (28) expr -> expr . PLUS expr
+    {               shift and go to state 71
+    .               shift and go to state 18
+    OR              shift and go to state 19
+    AND             shift and go to state 20
+    GT              shift and go to state 21
+    LT              shift and go to state 22
+    EQ              shift and go to state 23
+    NE              shift and go to state 24
+    GE              shift and go to state 25
+    LE              shift and go to state 26
+    DIVIDE          shift and go to state 27
+    TIMES           shift and go to state 28
+    MINUS           shift and go to state 29
+    PLUS            shift and go to state 30
+
+
+state 39
+
+    (39) stmt -> RETURN expr .
+    (11) expr -> expr . . ID
+    (12) expr -> expr . . expr
+    (17) expr -> expr . OR expr
+    (18) expr -> expr . AND expr
+    (19) expr -> expr . GT expr
+    (20) expr -> expr . LT expr
+    (21) expr -> expr . EQ expr
+    (22) expr -> expr . NE expr
+    (23) expr -> expr . GE expr
+    (24) expr -> expr . LE expr
+    (25) expr -> expr . DIVIDE expr
+    (26) expr -> expr . TIMES expr
+    (27) expr -> expr . MINUS expr
+    (28) expr -> expr . PLUS expr
+    ;               reduce using rule 39 (stmt -> RETURN expr .)
+    $end            reduce using rule 39 (stmt -> RETURN expr .)
+    }               reduce using rule 39 (stmt -> RETURN expr .)
+    .               shift and go to state 18
+    OR              shift and go to state 19
+    AND             shift and go to state 20
+    GT              shift and go to state 21
+    LT              shift and go to state 22
+    EQ              shift and go to state 23
+    NE              shift and go to state 24
+    GE              shift and go to state 25
+    LE              shift and go to state 26
+    DIVIDE          shift and go to state 27
+    TIMES           shift and go to state 28
+    MINUS           shift and go to state 29
+    PLUS            shift and go to state 30
+
+
+state 40
+
+    (40) stmt -> PRINT ( . expr )
+    (1) expr -> . ( expr )
+    (2) expr -> . MINUS expr
+    (3) expr -> . OBJECT
+    (4) expr -> . INPUT ( expr )
+    (5) expr -> . INPUT
+    (6) expr -> . PRINT
+    (7) expr -> . ID ( )
+    (8) expr -> . ID ( expr )
+    (9) expr -> . ID ( param )
+    (10) expr -> . ID
+    (11) expr -> . expr . ID
+    (12) expr -> . expr . expr
+    (13) expr -> . ID . expr
+    (14) expr -> . ID . ID
+    (15) expr -> . STRING
+    (16) expr -> . NUMBER
+    (17) expr -> . expr OR expr
+    (18) expr -> . expr AND expr
+    (19) expr -> . expr GT expr
+    (20) expr -> . expr LT expr
+    (21) expr -> . expr EQ expr
+    (22) expr -> . expr NE expr
+    (23) expr -> . expr GE expr
+    (24) expr -> . expr LE expr
+    (25) expr -> . expr DIVIDE expr
+    (26) expr -> . expr TIMES expr
+    (27) expr -> . expr MINUS expr
+    (28) expr -> . expr PLUS expr
+    (               shift and go to state 9
+    MINUS           shift and go to state 10
+    OBJECT          shift and go to state 11
+    INPUT           shift and go to state 12
+    PRINT           shift and go to state 36
+    ID              shift and go to state 37
+    STRING          shift and go to state 13
+    NUMBER          shift and go to state 14
+
+    expr                           shift and go to state 72
+
+state 41
+
+    (1) expr -> ( expr . )
+    (11) expr -> expr . . ID
+    (12) expr -> expr . . expr
+    (17) expr -> expr . OR expr
+    (18) expr -> expr . AND expr
+    (19) expr -> expr . GT expr
+    (20) expr -> expr . LT expr
+    (21) expr -> expr . EQ expr
+    (22) expr -> expr . NE expr
+    (23) expr -> expr . GE expr
+    (24) expr -> expr . LE expr
+    (25) expr -> expr . DIVIDE expr
+    (26) expr -> expr . TIMES expr
+    (27) expr -> expr . MINUS expr
+    (28) expr -> expr . PLUS expr
+    )               shift and go to state 73
+    .               shift and go to state 18
+    OR              shift and go to state 19
+    AND             shift and go to state 20
+    GT              shift and go to state 21
+    LT              shift and go to state 22
+    EQ              shift and go to state 23
+    NE              shift and go to state 24
+    GE              shift and go to state 25
+    LE              shift and go to state 26
+    DIVIDE          shift and go to state 27
+    TIMES           shift and go to state 28
+    MINUS           shift and go to state 29
+    PLUS            shift and go to state 30
+
+
+state 42
+
+    (2) expr -> MINUS expr .
+    (11) expr -> expr . . ID
+    (12) expr -> expr . . expr
+    (17) expr -> expr . OR expr
+    (18) expr -> expr . AND expr
+    (19) expr -> expr . GT expr
+    (20) expr -> expr . LT expr
+    (21) expr -> expr . EQ expr
+    (22) expr -> expr . NE expr
+    (23) expr -> expr . GE expr
+    (24) expr -> expr . LE expr
+    (25) expr -> expr . DIVIDE expr
+    (26) expr -> expr . TIMES expr
+    (27) expr -> expr . MINUS expr
+    (28) expr -> expr . PLUS expr
+    ;               reduce using rule 2 (expr -> MINUS expr .)
+    =               reduce using rule 2 (expr -> MINUS expr .)
+    .               reduce using rule 2 (expr -> MINUS expr .)
+    OR              reduce using rule 2 (expr -> MINUS expr .)
+    AND             reduce using rule 2 (expr -> MINUS expr .)
+    GT              reduce using rule 2 (expr -> MINUS expr .)
+    LT              reduce using rule 2 (expr -> MINUS expr .)
+    EQ              reduce using rule 2 (expr -> MINUS expr .)
+    NE              reduce using rule 2 (expr -> MINUS expr .)
+    GE              reduce using rule 2 (expr -> MINUS expr .)
+    LE              reduce using rule 2 (expr -> MINUS expr .)
+    DIVIDE          reduce using rule 2 (expr -> MINUS expr .)
+    TIMES           reduce using rule 2 (expr -> MINUS expr .)
+    MINUS           reduce using rule 2 (expr -> MINUS expr .)
+    PLUS            reduce using rule 2 (expr -> MINUS expr .)
+    {               reduce using rule 2 (expr -> MINUS expr .)
+    $end            reduce using rule 2 (expr -> MINUS expr .)
+    }               reduce using rule 2 (expr -> MINUS expr .)
+    )               reduce using rule 2 (expr -> MINUS expr .)
+    ,               reduce using rule 2 (expr -> MINUS expr .)
+
+
+state 43
+
+    (4) expr -> INPUT ( . expr )
+    (1) expr -> . ( expr )
+    (2) expr -> . MINUS expr
+    (3) expr -> . OBJECT
+    (4) expr -> . INPUT ( expr )
+    (5) expr -> . INPUT
+    (6) expr -> . PRINT
+    (7) expr -> . ID ( )
+    (8) expr -> . ID ( expr )
+    (9) expr -> . ID ( param )
+    (10) expr -> . ID
+    (11) expr -> . expr . ID
+    (12) expr -> . expr . expr
+    (13) expr -> . ID . expr
+    (14) expr -> . ID . ID
+    (15) expr -> . STRING
+    (16) expr -> . NUMBER
+    (17) expr -> . expr OR expr
+    (18) expr -> . expr AND expr
+    (19) expr -> . expr GT expr
+    (20) expr -> . expr LT expr
+    (21) expr -> . expr EQ expr
+    (22) expr -> . expr NE expr
+    (23) expr -> . expr GE expr
+    (24) expr -> . expr LE expr
+    (25) expr -> . expr DIVIDE expr
+    (26) expr -> . expr TIMES expr
+    (27) expr -> . expr MINUS expr
+    (28) expr -> . expr PLUS expr
+    (               shift and go to state 9
+    MINUS           shift and go to state 10
+    OBJECT          shift and go to state 11
+    INPUT           shift and go to state 12
+    PRINT           shift and go to state 36
+    ID              shift and go to state 37
+    STRING          shift and go to state 13
+    NUMBER          shift and go to state 14
+
+    expr                           shift and go to state 74
+
+state 44
+
+    (32) stmt -> stmt ; stmt .
+    (31) stmt -> stmt . ;
+    (32) stmt -> stmt . ; stmt
+  ! shift/reduce conflict for ; resolved as shift
+    $end            reduce using rule 32 (stmt -> stmt ; stmt .)
+    }               reduce using rule 32 (stmt -> stmt ; stmt .)
+    ;               shift and go to state 15
+
+
+state 45
+
+    (30) stmt -> expr ; stmt .
+    (31) stmt -> stmt . ;
+    (32) stmt -> stmt . ; stmt
+  ! shift/reduce conflict for ; resolved as shift
+    $end            reduce using rule 30 (stmt -> expr ; stmt .)
+    }               reduce using rule 30 (stmt -> expr ; stmt .)
+    ;               shift and go to state 15
+
+
+state 46
+
+    (41) stmt -> expr = expr .
+    (11) expr -> expr . . ID
+    (12) expr -> expr . . expr
+    (17) expr -> expr . OR expr
+    (18) expr -> expr . AND expr
+    (19) expr -> expr . GT expr
+    (20) expr -> expr . LT expr
+    (21) expr -> expr . EQ expr
+    (22) expr -> expr . NE expr
+    (23) expr -> expr . GE expr
+    (24) expr -> expr . LE expr
+    (25) expr -> expr . DIVIDE expr
+    (26) expr -> expr . TIMES expr
+    (27) expr -> expr . MINUS expr
+    (28) expr -> expr . PLUS expr
+    ;               reduce using rule 41 (stmt -> expr = expr .)
+    $end            reduce using rule 41 (stmt -> expr = expr .)
+    }               reduce using rule 41 (stmt -> expr = expr .)
+    .               shift and go to state 18
+    OR              shift and go to state 19
+    AND             shift and go to state 20
+    GT              shift and go to state 21
+    LT              shift and go to state 22
+    EQ              shift and go to state 23
+    NE              shift and go to state 24
+    GE              shift and go to state 25
+    LE              shift and go to state 26
+    DIVIDE          shift and go to state 27
+    TIMES           shift and go to state 28
+    MINUS           shift and go to state 29
+    PLUS            shift and go to state 30
+
+
+state 47
+
+    (12) expr -> expr . expr .
+    (11) expr -> expr . . ID
+    (12) expr -> expr . . expr
+    (17) expr -> expr . OR expr
+    (18) expr -> expr . AND expr
+    (19) expr -> expr . GT expr
+    (20) expr -> expr . LT expr
+    (21) expr -> expr . EQ expr
+    (22) expr -> expr . NE expr
+    (23) expr -> expr . GE expr
+    (24) expr -> expr . LE expr
+    (25) expr -> expr . DIVIDE expr
+    (26) expr -> expr . TIMES expr
+    (27) expr -> expr . MINUS expr
+    (28) expr -> expr . PLUS expr
+  ! shift/reduce conflict for . resolved as shift
+  ! shift/reduce conflict for OR resolved as shift
+  ! shift/reduce conflict for AND resolved as shift
+  ! shift/reduce conflict for GT resolved as shift
+  ! shift/reduce conflict for LT resolved as shift
+  ! shift/reduce conflict for EQ resolved as shift
+  ! shift/reduce conflict for NE resolved as shift
+  ! shift/reduce conflict for GE resolved as shift
+  ! shift/reduce conflict for LE resolved as shift
+  ! shift/reduce conflict for DIVIDE resolved as shift
+  ! shift/reduce conflict for TIMES resolved as shift
+  ! shift/reduce conflict for MINUS resolved as shift
+  ! shift/reduce conflict for PLUS resolved as shift
+    ;               reduce using rule 12 (expr -> expr . expr .)
+    =               reduce using rule 12 (expr -> expr . expr .)
+    {               reduce using rule 12 (expr -> expr . expr .)
+    $end            reduce using rule 12 (expr -> expr . expr .)
+    }               reduce using rule 12 (expr -> expr . expr .)
+    )               reduce using rule 12 (expr -> expr . expr .)
+    ,               reduce using rule 12 (expr -> expr . expr .)
+    .               shift and go to state 18
+    OR              shift and go to state 19
+    AND             shift and go to state 20
+    GT              shift and go to state 21
+    LT              shift and go to state 22
+    EQ              shift and go to state 23
+    NE              shift and go to state 24
+    GE              shift and go to state 25
+    LE              shift and go to state 26
+    DIVIDE          shift and go to state 27
+    TIMES           shift and go to state 28
+    MINUS           shift and go to state 29
+    PLUS            shift and go to state 30
+
+
+state 48
+
+    (11) expr -> expr . ID .
+    (7) expr -> ID . ( )
+    (8) expr -> ID . ( expr )
+    (9) expr -> ID . ( param )
+    (10) expr -> ID .
+    (13) expr -> ID . . expr
+    (14) expr -> ID . . ID
+  ! reduce/reduce conflict for . resolved using rule 11 (expr -> expr . ID .)
+  ! reduce/reduce conflict for OR resolved using rule 11 (expr -> expr . ID .)
+  ! reduce/reduce conflict for AND resolved using rule 11 (expr -> expr . ID .)
+  ! reduce/reduce conflict for GT resolved using rule 11 (expr -> expr . ID .)
+  ! reduce/reduce conflict for LT resolved using rule 11 (expr -> expr . ID .)
+  ! reduce/reduce conflict for EQ resolved using rule 11 (expr -> expr . ID .)
+  ! reduce/reduce conflict for NE resolved using rule 11 (expr -> expr . ID .)
+  ! reduce/reduce conflict for GE resolved using rule 11 (expr -> expr . ID .)
+  ! reduce/reduce conflict for LE resolved using rule 11 (expr -> expr . ID .)
+  ! reduce/reduce conflict for DIVIDE resolved using rule 11 (expr -> expr . ID .)
+  ! reduce/reduce conflict for TIMES resolved using rule 11 (expr -> expr . ID .)
+  ! reduce/reduce conflict for MINUS resolved using rule 11 (expr -> expr . ID .)
+  ! reduce/reduce conflict for PLUS resolved using rule 11 (expr -> expr . ID .)
+  ! reduce/reduce conflict for ; resolved using rule 11 (expr -> expr . ID .)
+  ! reduce/reduce conflict for = resolved using rule 11 (expr -> expr . ID .)
+  ! reduce/reduce conflict for { resolved using rule 11 (expr -> expr . ID .)
+  ! reduce/reduce conflict for $end resolved using rule 11 (expr -> expr . ID .)
+  ! reduce/reduce conflict for } resolved using rule 11 (expr -> expr . ID .)
+  ! reduce/reduce conflict for ) resolved using rule 11 (expr -> expr . ID .)
+  ! reduce/reduce conflict for , resolved using rule 11 (expr -> expr . ID .)
+  ! shift/reduce conflict for . resolved as shift
+    ;               reduce using rule 11 (expr -> expr . ID .)
+    =               reduce using rule 11 (expr -> expr . ID .)
+    OR              reduce using rule 11 (expr -> expr . ID .)
+    AND             reduce using rule 11 (expr -> expr . ID .)
+    GT              reduce using rule 11 (expr -> expr . ID .)
+    LT              reduce using rule 11 (expr -> expr . ID .)
+    EQ              reduce using rule 11 (expr -> expr . ID .)
+    NE              reduce using rule 11 (expr -> expr . ID .)
+    GE              reduce using rule 11 (expr -> expr . ID .)
+    LE              reduce using rule 11 (expr -> expr . ID .)
+    DIVIDE          reduce using rule 11 (expr -> expr . ID .)
+    TIMES           reduce using rule 11 (expr -> expr . ID .)
+    MINUS           reduce using rule 11 (expr -> expr . ID .)
+    PLUS            reduce using rule 11 (expr -> expr . ID .)
+    {               reduce using rule 11 (expr -> expr . ID .)
+    $end            reduce using rule 11 (expr -> expr . ID .)
+    }               reduce using rule 11 (expr -> expr . ID .)
+    )               reduce using rule 11 (expr -> expr . ID .)
+    ,               reduce using rule 11 (expr -> expr . ID .)
+    (               shift and go to state 33
+    .               shift and go to state 34
+
+
+state 49
+
+    (17) expr -> expr OR expr .
+    (11) expr -> expr . . ID
+    (12) expr -> expr . . expr
+    (17) expr -> expr . OR expr
+    (18) expr -> expr . AND expr
+    (19) expr -> expr . GT expr
+    (20) expr -> expr . LT expr
+    (21) expr -> expr . EQ expr
+    (22) expr -> expr . NE expr
+    (23) expr -> expr . GE expr
+    (24) expr -> expr . LE expr
+    (25) expr -> expr . DIVIDE expr
+    (26) expr -> expr . TIMES expr
+    (27) expr -> expr . MINUS expr
+    (28) expr -> expr . PLUS expr
+  ! shift/reduce conflict for . resolved as shift
+  ! shift/reduce conflict for OR resolved as shift
+  ! shift/reduce conflict for AND resolved as shift
+  ! shift/reduce conflict for GT resolved as shift
+  ! shift/reduce conflict for LT resolved as shift
+  ! shift/reduce conflict for EQ resolved as shift
+  ! shift/reduce conflict for NE resolved as shift
+  ! shift/reduce conflict for GE resolved as shift
+  ! shift/reduce conflict for LE resolved as shift
+  ! shift/reduce conflict for DIVIDE resolved as shift
+  ! shift/reduce conflict for TIMES resolved as shift
+  ! shift/reduce conflict for MINUS resolved as shift
+  ! shift/reduce conflict for PLUS resolved as shift
+    ;               reduce using rule 17 (expr -> expr OR expr .)
+    =               reduce using rule 17 (expr -> expr OR expr .)
+    {               reduce using rule 17 (expr -> expr OR expr .)
+    $end            reduce using rule 17 (expr -> expr OR expr .)
+    }               reduce using rule 17 (expr -> expr OR expr .)
+    )               reduce using rule 17 (expr -> expr OR expr .)
+    ,               reduce using rule 17 (expr -> expr OR expr .)
+    .               shift and go to state 18
+    OR              shift and go to state 19
+    AND             shift and go to state 20
+    GT              shift and go to state 21
+    LT              shift and go to state 22
+    EQ              shift and go to state 23
+    NE              shift and go to state 24
+    GE              shift and go to state 25
+    LE              shift and go to state 26
+    DIVIDE          shift and go to state 27
+    TIMES           shift and go to state 28
+    MINUS           shift and go to state 29
+    PLUS            shift and go to state 30
+
+
+state 50
+
+    (18) expr -> expr AND expr .
+    (11) expr -> expr . . ID
+    (12) expr -> expr . . expr
+    (17) expr -> expr . OR expr
+    (18) expr -> expr . AND expr
+    (19) expr -> expr . GT expr
+    (20) expr -> expr . LT expr
+    (21) expr -> expr . EQ expr
+    (22) expr -> expr . NE expr
+    (23) expr -> expr . GE expr
+    (24) expr -> expr . LE expr
+    (25) expr -> expr . DIVIDE expr
+    (26) expr -> expr . TIMES expr
+    (27) expr -> expr . MINUS expr
+    (28) expr -> expr . PLUS expr
+  ! shift/reduce conflict for . resolved as shift
+  ! shift/reduce conflict for OR resolved as shift
+  ! shift/reduce conflict for AND resolved as shift
+  ! shift/reduce conflict for GT resolved as shift
+  ! shift/reduce conflict for LT resolved as shift
+  ! shift/reduce conflict for EQ resolved as shift
+  ! shift/reduce conflict for NE resolved as shift
+  ! shift/reduce conflict for GE resolved as shift
+  ! shift/reduce conflict for LE resolved as shift
+  ! shift/reduce conflict for DIVIDE resolved as shift
+  ! shift/reduce conflict for TIMES resolved as shift
+  ! shift/reduce conflict for MINUS resolved as shift
+  ! shift/reduce conflict for PLUS resolved as shift
+    ;               reduce using rule 18 (expr -> expr AND expr .)
+    =               reduce using rule 18 (expr -> expr AND expr .)
+    {               reduce using rule 18 (expr -> expr AND expr .)
+    $end            reduce using rule 18 (expr -> expr AND expr .)
+    }               reduce using rule 18 (expr -> expr AND expr .)
+    )               reduce using rule 18 (expr -> expr AND expr .)
+    ,               reduce using rule 18 (expr -> expr AND expr .)
+    .               shift and go to state 18
+    OR              shift and go to state 19
+    AND             shift and go to state 20
+    GT              shift and go to state 21
+    LT              shift and go to state 22
+    EQ              shift and go to state 23
+    NE              shift and go to state 24
+    GE              shift and go to state 25
+    LE              shift and go to state 26
+    DIVIDE          shift and go to state 27
+    TIMES           shift and go to state 28
+    MINUS           shift and go to state 29
+    PLUS            shift and go to state 30
+
+
+state 51
+
+    (19) expr -> expr GT expr .
+    (11) expr -> expr . . ID
+    (12) expr -> expr . . expr
+    (17) expr -> expr . OR expr
+    (18) expr -> expr . AND expr
+    (19) expr -> expr . GT expr
+    (20) expr -> expr . LT expr
+    (21) expr -> expr . EQ expr
+    (22) expr -> expr . NE expr
+    (23) expr -> expr . GE expr
+    (24) expr -> expr . LE expr
+    (25) expr -> expr . DIVIDE expr
+    (26) expr -> expr . TIMES expr
+    (27) expr -> expr . MINUS expr
+    (28) expr -> expr . PLUS expr
+    ;               reduce using rule 19 (expr -> expr GT expr .)
+    =               reduce using rule 19 (expr -> expr GT expr .)
+    .               reduce using rule 19 (expr -> expr GT expr .)
+    OR              reduce using rule 19 (expr -> expr GT expr .)
+    AND             reduce using rule 19 (expr -> expr GT expr .)
+    GT              reduce using rule 19 (expr -> expr GT expr .)
+    LT              reduce using rule 19 (expr -> expr GT expr .)
+    EQ              reduce using rule 19 (expr -> expr GT expr .)
+    NE              reduce using rule 19 (expr -> expr GT expr .)
+    GE              reduce using rule 19 (expr -> expr GT expr .)
+    LE              reduce using rule 19 (expr -> expr GT expr .)
+    {               reduce using rule 19 (expr -> expr GT expr .)
+    $end            reduce using rule 19 (expr -> expr GT expr .)
+    }               reduce using rule 19 (expr -> expr GT expr .)
+    )               reduce using rule 19 (expr -> expr GT expr .)
+    ,               reduce using rule 19 (expr -> expr GT expr .)
+    DIVIDE          shift and go to state 27
+    TIMES           shift and go to state 28
+    MINUS           shift and go to state 29
+    PLUS            shift and go to state 30
+
+
+state 52
+
+    (20) expr -> expr LT expr .
+    (11) expr -> expr . . ID
+    (12) expr -> expr . . expr
+    (17) expr -> expr . OR expr
+    (18) expr -> expr . AND expr
+    (19) expr -> expr . GT expr
+    (20) expr -> expr . LT expr
+    (21) expr -> expr . EQ expr
+    (22) expr -> expr . NE expr
+    (23) expr -> expr . GE expr
+    (24) expr -> expr . LE expr
+    (25) expr -> expr . DIVIDE expr
+    (26) expr -> expr . TIMES expr
+    (27) expr -> expr . MINUS expr
+    (28) expr -> expr . PLUS expr
+    ;               reduce using rule 20 (expr -> expr LT expr .)
+    =               reduce using rule 20 (expr -> expr LT expr .)
+    .               reduce using rule 20 (expr -> expr LT expr .)
+    OR              reduce using rule 20 (expr -> expr LT expr .)
+    AND             reduce using rule 20 (expr -> expr LT expr .)
+    GT              reduce using rule 20 (expr -> expr LT expr .)
+    LT              reduce using rule 20 (expr -> expr LT expr .)
+    EQ              reduce using rule 20 (expr -> expr LT expr .)
+    NE              reduce using rule 20 (expr -> expr LT expr .)
+    GE              reduce using rule 20 (expr -> expr LT expr .)
+    LE              reduce using rule 20 (expr -> expr LT expr .)
+    {               reduce using rule 20 (expr -> expr LT expr .)
+    $end            reduce using rule 20 (expr -> expr LT expr .)
+    }               reduce using rule 20 (expr -> expr LT expr .)
+    )               reduce using rule 20 (expr -> expr LT expr .)
+    ,               reduce using rule 20 (expr -> expr LT expr .)
+    DIVIDE          shift and go to state 27
+    TIMES           shift and go to state 28
+    MINUS           shift and go to state 29
+    PLUS            shift and go to state 30
+
+
+state 53
+
+    (21) expr -> expr EQ expr .
+    (11) expr -> expr . . ID
+    (12) expr -> expr . . expr
+    (17) expr -> expr . OR expr
+    (18) expr -> expr . AND expr
+    (19) expr -> expr . GT expr
+    (20) expr -> expr . LT expr
+    (21) expr -> expr . EQ expr
+    (22) expr -> expr . NE expr
+    (23) expr -> expr . GE expr
+    (24) expr -> expr . LE expr
+    (25) expr -> expr . DIVIDE expr
+    (26) expr -> expr . TIMES expr
+    (27) expr -> expr . MINUS expr
+    (28) expr -> expr . PLUS expr
+    ;               reduce using rule 21 (expr -> expr EQ expr .)
+    =               reduce using rule 21 (expr -> expr EQ expr .)
+    .               reduce using rule 21 (expr -> expr EQ expr .)
+    OR              reduce using rule 21 (expr -> expr EQ expr .)
+    AND             reduce using rule 21 (expr -> expr EQ expr .)
+    GT              reduce using rule 21 (expr -> expr EQ expr .)
+    LT              reduce using rule 21 (expr -> expr EQ expr .)
+    EQ              reduce using rule 21 (expr -> expr EQ expr .)
+    NE              reduce using rule 21 (expr -> expr EQ expr .)
+    GE              reduce using rule 21 (expr -> expr EQ expr .)
+    LE              reduce using rule 21 (expr -> expr EQ expr .)
+    {               reduce using rule 21 (expr -> expr EQ expr .)
+    $end            reduce using rule 21 (expr -> expr EQ expr .)
+    }               reduce using rule 21 (expr -> expr EQ expr .)
+    )               reduce using rule 21 (expr -> expr EQ expr .)
+    ,               reduce using rule 21 (expr -> expr EQ expr .)
+    DIVIDE          shift and go to state 27
+    TIMES           shift and go to state 28
+    MINUS           shift and go to state 29
+    PLUS            shift and go to state 30
+
+
+state 54
+
+    (22) expr -> expr NE expr .
+    (11) expr -> expr . . ID
+    (12) expr -> expr . . expr
+    (17) expr -> expr . OR expr
+    (18) expr -> expr . AND expr
+    (19) expr -> expr . GT expr
+    (20) expr -> expr . LT expr
+    (21) expr -> expr . EQ expr
+    (22) expr -> expr . NE expr
+    (23) expr -> expr . GE expr
+    (24) expr -> expr . LE expr
+    (25) expr -> expr . DIVIDE expr
+    (26) expr -> expr . TIMES expr
+    (27) expr -> expr . MINUS expr
+    (28) expr -> expr . PLUS expr
+    ;               reduce using rule 22 (expr -> expr NE expr .)
+    =               reduce using rule 22 (expr -> expr NE expr .)
+    .               reduce using rule 22 (expr -> expr NE expr .)
+    OR              reduce using rule 22 (expr -> expr NE expr .)
+    AND             reduce using rule 22 (expr -> expr NE expr .)
+    GT              reduce using rule 22 (expr -> expr NE expr .)
+    LT              reduce using rule 22 (expr -> expr NE expr .)
+    EQ              reduce using rule 22 (expr -> expr NE expr .)
+    NE              reduce using rule 22 (expr -> expr NE expr .)
+    GE              reduce using rule 22 (expr -> expr NE expr .)
+    LE              reduce using rule 22 (expr -> expr NE expr .)
+    {               reduce using rule 22 (expr -> expr NE expr .)
+    $end            reduce using rule 22 (expr -> expr NE expr .)
+    }               reduce using rule 22 (expr -> expr NE expr .)
+    )               reduce using rule 22 (expr -> expr NE expr .)
+    ,               reduce using rule 22 (expr -> expr NE expr .)
+    DIVIDE          shift and go to state 27
+    TIMES           shift and go to state 28
+    MINUS           shift and go to state 29
+    PLUS            shift and go to state 30
+
+
+state 55
+
+    (23) expr -> expr GE expr .
+    (11) expr -> expr . . ID
+    (12) expr -> expr . . expr
+    (17) expr -> expr . OR expr
+    (18) expr -> expr . AND expr
+    (19) expr -> expr . GT expr
+    (20) expr -> expr . LT expr
+    (21) expr -> expr . EQ expr
+    (22) expr -> expr . NE expr
+    (23) expr -> expr . GE expr
+    (24) expr -> expr . LE expr
+    (25) expr -> expr . DIVIDE expr
+    (26) expr -> expr . TIMES expr
+    (27) expr -> expr . MINUS expr
+    (28) expr -> expr . PLUS expr
+    ;               reduce using rule 23 (expr -> expr GE expr .)
+    =               reduce using rule 23 (expr -> expr GE expr .)
+    .               reduce using rule 23 (expr -> expr GE expr .)
+    OR              reduce using rule 23 (expr -> expr GE expr .)
+    AND             reduce using rule 23 (expr -> expr GE expr .)
+    GT              reduce using rule 23 (expr -> expr GE expr .)
+    LT              reduce using rule 23 (expr -> expr GE expr .)
+    EQ              reduce using rule 23 (expr -> expr GE expr .)
+    NE              reduce using rule 23 (expr -> expr GE expr .)
+    GE              reduce using rule 23 (expr -> expr GE expr .)
+    LE              reduce using rule 23 (expr -> expr GE expr .)
+    {               reduce using rule 23 (expr -> expr GE expr .)
+    $end            reduce using rule 23 (expr -> expr GE expr .)
+    }               reduce using rule 23 (expr -> expr GE expr .)
+    )               reduce using rule 23 (expr -> expr GE expr .)
+    ,               reduce using rule 23 (expr -> expr GE expr .)
+    DIVIDE          shift and go to state 27
+    TIMES           shift and go to state 28
+    MINUS           shift and go to state 29
+    PLUS            shift and go to state 30
+
+
+state 56
+
+    (24) expr -> expr LE expr .
+    (11) expr -> expr . . ID
+    (12) expr -> expr . . expr
+    (17) expr -> expr . OR expr
+    (18) expr -> expr . AND expr
+    (19) expr -> expr . GT expr
+    (20) expr -> expr . LT expr
+    (21) expr -> expr . EQ expr
+    (22) expr -> expr . NE expr
+    (23) expr -> expr . GE expr
+    (24) expr -> expr . LE expr
+    (25) expr -> expr . DIVIDE expr
+    (26) expr -> expr . TIMES expr
+    (27) expr -> expr . MINUS expr
+    (28) expr -> expr . PLUS expr
+    ;               reduce using rule 24 (expr -> expr LE expr .)
+    =               reduce using rule 24 (expr -> expr LE expr .)
+    .               reduce using rule 24 (expr -> expr LE expr .)
+    OR              reduce using rule 24 (expr -> expr LE expr .)
+    AND             reduce using rule 24 (expr -> expr LE expr .)
+    GT              reduce using rule 24 (expr -> expr LE expr .)
+    LT              reduce using rule 24 (expr -> expr LE expr .)
+    EQ              reduce using rule 24 (expr -> expr LE expr .)
+    NE              reduce using rule 24 (expr -> expr LE expr .)
+    GE              reduce using rule 24 (expr -> expr LE expr .)
+    LE              reduce using rule 24 (expr -> expr LE expr .)
+    {               reduce using rule 24 (expr -> expr LE expr .)
+    $end            reduce using rule 24 (expr -> expr LE expr .)
+    }               reduce using rule 24 (expr -> expr LE expr .)
+    )               reduce using rule 24 (expr -> expr LE expr .)
+    ,               reduce using rule 24 (expr -> expr LE expr .)
+    DIVIDE          shift and go to state 27
+    TIMES           shift and go to state 28
+    MINUS           shift and go to state 29
+    PLUS            shift and go to state 30
+
+
+state 57
+
+    (25) expr -> expr DIVIDE expr .
+    (11) expr -> expr . . ID
+    (12) expr -> expr . . expr
+    (17) expr -> expr . OR expr
+    (18) expr -> expr . AND expr
+    (19) expr -> expr . GT expr
+    (20) expr -> expr . LT expr
+    (21) expr -> expr . EQ expr
+    (22) expr -> expr . NE expr
+    (23) expr -> expr . GE expr
+    (24) expr -> expr . LE expr
+    (25) expr -> expr . DIVIDE expr
+    (26) expr -> expr . TIMES expr
+    (27) expr -> expr . MINUS expr
+    (28) expr -> expr . PLUS expr
+    ;               reduce using rule 25 (expr -> expr DIVIDE expr .)
+    =               reduce using rule 25 (expr -> expr DIVIDE expr .)
+    .               reduce using rule 25 (expr -> expr DIVIDE expr .)
+    OR              reduce using rule 25 (expr -> expr DIVIDE expr .)
+    AND             reduce using rule 25 (expr -> expr DIVIDE expr .)
+    GT              reduce using rule 25 (expr -> expr DIVIDE expr .)
+    LT              reduce using rule 25 (expr -> expr DIVIDE expr .)
+    EQ              reduce using rule 25 (expr -> expr DIVIDE expr .)
+    NE              reduce using rule 25 (expr -> expr DIVIDE expr .)
+    GE              reduce using rule 25 (expr -> expr DIVIDE expr .)
+    LE              reduce using rule 25 (expr -> expr DIVIDE expr .)
+    DIVIDE          reduce using rule 25 (expr -> expr DIVIDE expr .)
+    TIMES           reduce using rule 25 (expr -> expr DIVIDE expr .)
+    MINUS           reduce using rule 25 (expr -> expr DIVIDE expr .)
+    PLUS            reduce using rule 25 (expr -> expr DIVIDE expr .)
+    {               reduce using rule 25 (expr -> expr DIVIDE expr .)
+    $end            reduce using rule 25 (expr -> expr DIVIDE expr .)
+    }               reduce using rule 25 (expr -> expr DIVIDE expr .)
+    )               reduce using rule 25 (expr -> expr DIVIDE expr .)
+    ,               reduce using rule 25 (expr -> expr DIVIDE expr .)
+
+
+state 58
+
+    (26) expr -> expr TIMES expr .
+    (11) expr -> expr . . ID
+    (12) expr -> expr . . expr
+    (17) expr -> expr . OR expr
+    (18) expr -> expr . AND expr
+    (19) expr -> expr . GT expr
+    (20) expr -> expr . LT expr
+    (21) expr -> expr . EQ expr
+    (22) expr -> expr . NE expr
+    (23) expr -> expr . GE expr
+    (24) expr -> expr . LE expr
+    (25) expr -> expr . DIVIDE expr
+    (26) expr -> expr . TIMES expr
+    (27) expr -> expr . MINUS expr
+    (28) expr -> expr . PLUS expr
+    ;               reduce using rule 26 (expr -> expr TIMES expr .)
+    =               reduce using rule 26 (expr -> expr TIMES expr .)
+    .               reduce using rule 26 (expr -> expr TIMES expr .)
+    OR              reduce using rule 26 (expr -> expr TIMES expr .)
+    AND             reduce using rule 26 (expr -> expr TIMES expr .)
+    GT              reduce using rule 26 (expr -> expr TIMES expr .)
+    LT              reduce using rule 26 (expr -> expr TIMES expr .)
+    EQ              reduce using rule 26 (expr -> expr TIMES expr .)
+    NE              reduce using rule 26 (expr -> expr TIMES expr .)
+    GE              reduce using rule 26 (expr -> expr TIMES expr .)
+    LE              reduce using rule 26 (expr -> expr TIMES expr .)
+    DIVIDE          reduce using rule 26 (expr -> expr TIMES expr .)
+    TIMES           reduce using rule 26 (expr -> expr TIMES expr .)
+    MINUS           reduce using rule 26 (expr -> expr TIMES expr .)
+    PLUS            reduce using rule 26 (expr -> expr TIMES expr .)
+    {               reduce using rule 26 (expr -> expr TIMES expr .)
+    $end            reduce using rule 26 (expr -> expr TIMES expr .)
+    }               reduce using rule 26 (expr -> expr TIMES expr .)
+    )               reduce using rule 26 (expr -> expr TIMES expr .)
+    ,               reduce using rule 26 (expr -> expr TIMES expr .)
+
+
+state 59
+
+    (27) expr -> expr MINUS expr .
+    (11) expr -> expr . . ID
+    (12) expr -> expr . . expr
+    (17) expr -> expr . OR expr
+    (18) expr -> expr . AND expr
+    (19) expr -> expr . GT expr
+    (20) expr -> expr . LT expr
+    (21) expr -> expr . EQ expr
+    (22) expr -> expr . NE expr
+    (23) expr -> expr . GE expr
+    (24) expr -> expr . LE expr
+    (25) expr -> expr . DIVIDE expr
+    (26) expr -> expr . TIMES expr
+    (27) expr -> expr . MINUS expr
+    (28) expr -> expr . PLUS expr
+    ;               reduce using rule 27 (expr -> expr MINUS expr .)
+    =               reduce using rule 27 (expr -> expr MINUS expr .)
+    .               reduce using rule 27 (expr -> expr MINUS expr .)
+    OR              reduce using rule 27 (expr -> expr MINUS expr .)
+    AND             reduce using rule 27 (expr -> expr MINUS expr .)
+    GT              reduce using rule 27 (expr -> expr MINUS expr .)
+    LT              reduce using rule 27 (expr -> expr MINUS expr .)
+    EQ              reduce using rule 27 (expr -> expr MINUS expr .)
+    NE              reduce using rule 27 (expr -> expr MINUS expr .)
+    GE              reduce using rule 27 (expr -> expr MINUS expr .)
+    LE              reduce using rule 27 (expr -> expr MINUS expr .)
+    MINUS           reduce using rule 27 (expr -> expr MINUS expr .)
+    PLUS            reduce using rule 27 (expr -> expr MINUS expr .)
+    {               reduce using rule 27 (expr -> expr MINUS expr .)
+    $end            reduce using rule 27 (expr -> expr MINUS expr .)
+    }               reduce using rule 27 (expr -> expr MINUS expr .)
+    )               reduce using rule 27 (expr -> expr MINUS expr .)
+    ,               reduce using rule 27 (expr -> expr MINUS expr .)
+    DIVIDE          shift and go to state 27
+    TIMES           shift and go to state 28
+
+
+state 60
+
+    (28) expr -> expr PLUS expr .
+    (11) expr -> expr . . ID
+    (12) expr -> expr . . expr
+    (17) expr -> expr . OR expr
+    (18) expr -> expr . AND expr
+    (19) expr -> expr . GT expr
+    (20) expr -> expr . LT expr
+    (21) expr -> expr . EQ expr
+    (22) expr -> expr . NE expr
+    (23) expr -> expr . GE expr
+    (24) expr -> expr . LE expr
+    (25) expr -> expr . DIVIDE expr
+    (26) expr -> expr . TIMES expr
+    (27) expr -> expr . MINUS expr
+    (28) expr -> expr . PLUS expr
+    ;               reduce using rule 28 (expr -> expr PLUS expr .)
+    =               reduce using rule 28 (expr -> expr PLUS expr .)
+    .               reduce using rule 28 (expr -> expr PLUS expr .)
+    OR              reduce using rule 28 (expr -> expr PLUS expr .)
+    AND             reduce using rule 28 (expr -> expr PLUS expr .)
+    GT              reduce using rule 28 (expr -> expr PLUS expr .)
+    LT              reduce using rule 28 (expr -> expr PLUS expr .)
+    EQ              reduce using rule 28 (expr -> expr PLUS expr .)
+    NE              reduce using rule 28 (expr -> expr PLUS expr .)
+    GE              reduce using rule 28 (expr -> expr PLUS expr .)
+    LE              reduce using rule 28 (expr -> expr PLUS expr .)
+    MINUS           reduce using rule 28 (expr -> expr PLUS expr .)
+    PLUS            reduce using rule 28 (expr -> expr PLUS expr .)
+    {               reduce using rule 28 (expr -> expr PLUS expr .)
+    $end            reduce using rule 28 (expr -> expr PLUS expr .)
+    }               reduce using rule 28 (expr -> expr PLUS expr .)
+    )               reduce using rule 28 (expr -> expr PLUS expr .)
+    ,               reduce using rule 28 (expr -> expr PLUS expr .)
+    DIVIDE          shift and go to state 27
+    TIMES           shift and go to state 28
+
+
+state 61
+
+    (33) stmt -> FUNC ID { . stmt }
+    (29) stmt -> . expr ;
+    (30) stmt -> . expr ; stmt
+    (31) stmt -> . stmt ;
+    (32) stmt -> . stmt ; stmt
+    (33) stmt -> . FUNC ID { stmt }
+    (34) stmt -> . FUNC ID expr { stmt }
+    (35) stmt -> . FUNC ID param { stmt }
+    (36) stmt -> . IF expr { stmt } ELSE { stmt }
+    (37) stmt -> . IF expr { stmt }
+    (38) stmt -> . WHILE expr { stmt }
+    (39) stmt -> . RETURN expr
+    (40) stmt -> . PRINT ( expr )
+    (41) stmt -> . expr = expr
+    (42) stmt -> . ID = expr
+    (1) expr -> . ( expr )
+    (2) expr -> . MINUS expr
+    (3) expr -> . OBJECT
+    (4) expr -> . INPUT ( expr )
+    (5) expr -> . INPUT
+    (6) expr -> . PRINT
+    (7) expr -> . ID ( )
+    (8) expr -> . ID ( expr )
+    (9) expr -> . ID ( param )
+    (10) expr -> . ID
+    (11) expr -> . expr . ID
+    (12) expr -> . expr . expr
+    (13) expr -> . ID . expr
+    (14) expr -> . ID . ID
+    (15) expr -> . STRING
+    (16) expr -> . NUMBER
+    (17) expr -> . expr OR expr
+    (18) expr -> . expr AND expr
+    (19) expr -> . expr GT expr
+    (20) expr -> . expr LT expr
+    (21) expr -> . expr EQ expr
+    (22) expr -> . expr NE expr
+    (23) expr -> . expr GE expr
+    (24) expr -> . expr LE expr
+    (25) expr -> . expr DIVIDE expr
+    (26) expr -> . expr TIMES expr
+    (27) expr -> . expr MINUS expr
+    (28) expr -> . expr PLUS expr
+    FUNC            shift and go to state 3
+    IF              shift and go to state 5
+    WHILE           shift and go to state 6
+    RETURN          shift and go to state 7
+    PRINT           shift and go to state 8
+    ID              shift and go to state 4
+    (               shift and go to state 9
+    MINUS           shift and go to state 10
+    OBJECT          shift and go to state 11
+    INPUT           shift and go to state 12
+    STRING          shift and go to state 13
+    NUMBER          shift and go to state 14
+
+    stmt                           shift and go to state 75
+    expr                           shift and go to state 2
+
+state 62
+
+    (34) stmt -> FUNC ID expr . { stmt }
+    (11) expr -> expr . . ID
+    (12) expr -> expr . . expr
+    (17) expr -> expr . OR expr
+    (18) expr -> expr . AND expr
+    (19) expr -> expr . GT expr
+    (20) expr -> expr . LT expr
+    (21) expr -> expr . EQ expr
+    (22) expr -> expr . NE expr
+    (23) expr -> expr . GE expr
+    (24) expr -> expr . LE expr
+    (25) expr -> expr . DIVIDE expr
+    (26) expr -> expr . TIMES expr
+    (27) expr -> expr . MINUS expr
+    (28) expr -> expr . PLUS expr
+    (44) param -> expr . , param
+    (45) param -> expr . , expr
+    {               shift and go to state 76
+    .               shift and go to state 18
+    OR              shift and go to state 19
+    AND             shift and go to state 20
+    GT              shift and go to state 21
+    LT              shift and go to state 22
+    EQ              shift and go to state 23
+    NE              shift and go to state 24
+    GE              shift and go to state 25
+    LE              shift and go to state 26
+    DIVIDE          shift and go to state 27
+    TIMES           shift and go to state 28
+    MINUS           shift and go to state 29
+    PLUS            shift and go to state 30
+    ,               shift and go to state 77
+
+
+state 63
+
+    (35) stmt -> FUNC ID param . { stmt }
+    (43) param -> param . , param
+    {               shift and go to state 78
+    ,               shift and go to state 79
+
+
+state 64
+
+    (42) stmt -> ID = expr .
+    (11) expr -> expr . . ID
+    (12) expr -> expr . . expr
+    (17) expr -> expr . OR expr
+    (18) expr -> expr . AND expr
+    (19) expr -> expr . GT expr
+    (20) expr -> expr . LT expr
+    (21) expr -> expr . EQ expr
+    (22) expr -> expr . NE expr
+    (23) expr -> expr . GE expr
+    (24) expr -> expr . LE expr
+    (25) expr -> expr . DIVIDE expr
+    (26) expr -> expr . TIMES expr
+    (27) expr -> expr . MINUS expr
+    (28) expr -> expr . PLUS expr
+    ;               reduce using rule 42 (stmt -> ID = expr .)
+    $end            reduce using rule 42 (stmt -> ID = expr .)
+    }               reduce using rule 42 (stmt -> ID = expr .)
+    .               shift and go to state 18
+    OR              shift and go to state 19
+    AND             shift and go to state 20
+    GT              shift and go to state 21
+    LT              shift and go to state 22
+    EQ              shift and go to state 23
+    NE              shift and go to state 24
+    GE              shift and go to state 25
+    LE              shift and go to state 26
+    DIVIDE          shift and go to state 27
+    TIMES           shift and go to state 28
+    MINUS           shift and go to state 29
+    PLUS            shift and go to state 30
+
+
+state 65
+
+    (7) expr -> ID ( ) .
+    ;               reduce using rule 7 (expr -> ID ( ) .)
+    =               reduce using rule 7 (expr -> ID ( ) .)
+    .               reduce using rule 7 (expr -> ID ( ) .)
+    OR              reduce using rule 7 (expr -> ID ( ) .)
+    AND             reduce using rule 7 (expr -> ID ( ) .)
+    GT              reduce using rule 7 (expr -> ID ( ) .)
+    LT              reduce using rule 7 (expr -> ID ( ) .)
+    EQ              reduce using rule 7 (expr -> ID ( ) .)
+    NE              reduce using rule 7 (expr -> ID ( ) .)
+    GE              reduce using rule 7 (expr -> ID ( ) .)
+    LE              reduce using rule 7 (expr -> ID ( ) .)
+    DIVIDE          reduce using rule 7 (expr -> ID ( ) .)
+    TIMES           reduce using rule 7 (expr -> ID ( ) .)
+    MINUS           reduce using rule 7 (expr -> ID ( ) .)
+    PLUS            reduce using rule 7 (expr -> ID ( ) .)
+    {               reduce using rule 7 (expr -> ID ( ) .)
+    $end            reduce using rule 7 (expr -> ID ( ) .)
+    }               reduce using rule 7 (expr -> ID ( ) .)
+    )               reduce using rule 7 (expr -> ID ( ) .)
+    ,               reduce using rule 7 (expr -> ID ( ) .)
+
+
+state 66
+
+    (8) expr -> ID ( expr . )
+    (11) expr -> expr . . ID
+    (12) expr -> expr . . expr
+    (17) expr -> expr . OR expr
+    (18) expr -> expr . AND expr
+    (19) expr -> expr . GT expr
+    (20) expr -> expr . LT expr
+    (21) expr -> expr . EQ expr
+    (22) expr -> expr . NE expr
+    (23) expr -> expr . GE expr
+    (24) expr -> expr . LE expr
+    (25) expr -> expr . DIVIDE expr
+    (26) expr -> expr . TIMES expr
+    (27) expr -> expr . MINUS expr
+    (28) expr -> expr . PLUS expr
+    (44) param -> expr . , param
+    (45) param -> expr . , expr
+    )               shift and go to state 80
+    .               shift and go to state 18
+    OR              shift and go to state 19
+    AND             shift and go to state 20
+    GT              shift and go to state 21
+    LT              shift and go to state 22
+    EQ              shift and go to state 23
+    NE              shift and go to state 24
+    GE              shift and go to state 25
+    LE              shift and go to state 26
+    DIVIDE          shift and go to state 27
+    TIMES           shift and go to state 28
+    MINUS           shift and go to state 29
+    PLUS            shift and go to state 30
+    ,               shift and go to state 77
+
+
+state 67
+
+    (9) expr -> ID ( param . )
+    (43) param -> param . , param
+    )               shift and go to state 81
+    ,               shift and go to state 79
+
+
+state 68
+
+    (14) expr -> ID . ID .
+    (7) expr -> ID . ( )
+    (8) expr -> ID . ( expr )
+    (9) expr -> ID . ( param )
+    (10) expr -> ID .
+    (13) expr -> ID . . expr
+    (14) expr -> ID . . ID
+  ! reduce/reduce conflict for . resolved using rule 14 (expr -> ID . ID .)
+  ! reduce/reduce conflict for OR resolved using rule 14 (expr -> ID . ID .)
+  ! reduce/reduce conflict for AND resolved using rule 14 (expr -> ID . ID .)
+  ! reduce/reduce conflict for GT resolved using rule 14 (expr -> ID . ID .)
+  ! reduce/reduce conflict for LT resolved using rule 14 (expr -> ID . ID .)
+  ! reduce/reduce conflict for EQ resolved using rule 14 (expr -> ID . ID .)
+  ! reduce/reduce conflict for NE resolved using rule 14 (expr -> ID . ID .)
+  ! reduce/reduce conflict for GE resolved using rule 14 (expr -> ID . ID .)
+  ! reduce/reduce conflict for LE resolved using rule 14 (expr -> ID . ID .)
+  ! reduce/reduce conflict for DIVIDE resolved using rule 14 (expr -> ID . ID .)
+  ! reduce/reduce conflict for TIMES resolved using rule 14 (expr -> ID . ID .)
+  ! reduce/reduce conflict for MINUS resolved using rule 14 (expr -> ID . ID .)
+  ! reduce/reduce conflict for PLUS resolved using rule 14 (expr -> ID . ID .)
+  ! reduce/reduce conflict for ; resolved using rule 14 (expr -> ID . ID .)
+  ! reduce/reduce conflict for = resolved using rule 14 (expr -> ID . ID .)
+  ! reduce/reduce conflict for { resolved using rule 14 (expr -> ID . ID .)
+  ! reduce/reduce conflict for $end resolved using rule 14 (expr -> ID . ID .)
+  ! reduce/reduce conflict for } resolved using rule 14 (expr -> ID . ID .)
+  ! reduce/reduce conflict for ) resolved using rule 14 (expr -> ID . ID .)
+  ! reduce/reduce conflict for , resolved using rule 14 (expr -> ID . ID .)
+  ! shift/reduce conflict for . resolved as shift
+    ;               reduce using rule 14 (expr -> ID . ID .)
+    =               reduce using rule 14 (expr -> ID . ID .)
+    OR              reduce using rule 14 (expr -> ID . ID .)
+    AND             reduce using rule 14 (expr -> ID . ID .)
+    GT              reduce using rule 14 (expr -> ID . ID .)
+    LT              reduce using rule 14 (expr -> ID . ID .)
+    EQ              reduce using rule 14 (expr -> ID . ID .)
+    NE              reduce using rule 14 (expr -> ID . ID .)
+    GE              reduce using rule 14 (expr -> ID . ID .)
+    LE              reduce using rule 14 (expr -> ID . ID .)
+    DIVIDE          reduce using rule 14 (expr -> ID . ID .)
+    TIMES           reduce using rule 14 (expr -> ID . ID .)
+    MINUS           reduce using rule 14 (expr -> ID . ID .)
+    PLUS            reduce using rule 14 (expr -> ID . ID .)
+    {               reduce using rule 14 (expr -> ID . ID .)
+    $end            reduce using rule 14 (expr -> ID . ID .)
+    }               reduce using rule 14 (expr -> ID . ID .)
+    )               reduce using rule 14 (expr -> ID . ID .)
+    ,               reduce using rule 14 (expr -> ID . ID .)
+    (               shift and go to state 33
+    .               shift and go to state 34
+
+
+state 69
+
+    (13) expr -> ID . expr .
+    (11) expr -> expr . . ID
+    (12) expr -> expr . . expr
+    (17) expr -> expr . OR expr
+    (18) expr -> expr . AND expr
+    (19) expr -> expr . GT expr
+    (20) expr -> expr . LT expr
+    (21) expr -> expr . EQ expr
+    (22) expr -> expr . NE expr
+    (23) expr -> expr . GE expr
+    (24) expr -> expr . LE expr
+    (25) expr -> expr . DIVIDE expr
+    (26) expr -> expr . TIMES expr
+    (27) expr -> expr . MINUS expr
+    (28) expr -> expr . PLUS expr
+  ! shift/reduce conflict for . resolved as shift
+  ! shift/reduce conflict for OR resolved as shift
+  ! shift/reduce conflict for AND resolved as shift
+  ! shift/reduce conflict for GT resolved as shift
+  ! shift/reduce conflict for LT resolved as shift
+  ! shift/reduce conflict for EQ resolved as shift
+  ! shift/reduce conflict for NE resolved as shift
+  ! shift/reduce conflict for GE resolved as shift
+  ! shift/reduce conflict for LE resolved as shift
+  ! shift/reduce conflict for DIVIDE resolved as shift
+  ! shift/reduce conflict for TIMES resolved as shift
+  ! shift/reduce conflict for MINUS resolved as shift
+  ! shift/reduce conflict for PLUS resolved as shift
+    ;               reduce using rule 13 (expr -> ID . expr .)
+    =               reduce using rule 13 (expr -> ID . expr .)
+    {               reduce using rule 13 (expr -> ID . expr .)
+    $end            reduce using rule 13 (expr -> ID . expr .)
+    }               reduce using rule 13 (expr -> ID . expr .)
+    )               reduce using rule 13 (expr -> ID . expr .)
+    ,               reduce using rule 13 (expr -> ID . expr .)
+    .               shift and go to state 18
+    OR              shift and go to state 19
+    AND             shift and go to state 20
+    GT              shift and go to state 21
+    LT              shift and go to state 22
+    EQ              shift and go to state 23
+    NE              shift and go to state 24
+    GE              shift and go to state 25
+    LE              shift and go to state 26
+    DIVIDE          shift and go to state 27
+    TIMES           shift and go to state 28
+    MINUS           shift and go to state 29
+    PLUS            shift and go to state 30
+
+
+state 70
+
+    (36) stmt -> IF expr { . stmt } ELSE { stmt }
+    (37) stmt -> IF expr { . stmt }
+    (29) stmt -> . expr ;
+    (30) stmt -> . expr ; stmt
+    (31) stmt -> . stmt ;
+    (32) stmt -> . stmt ; stmt
+    (33) stmt -> . FUNC ID { stmt }
+    (34) stmt -> . FUNC ID expr { stmt }
+    (35) stmt -> . FUNC ID param { stmt }
+    (36) stmt -> . IF expr { stmt } ELSE { stmt }
+    (37) stmt -> . IF expr { stmt }
+    (38) stmt -> . WHILE expr { stmt }
+    (39) stmt -> . RETURN expr
+    (40) stmt -> . PRINT ( expr )
+    (41) stmt -> . expr = expr
+    (42) stmt -> . ID = expr
+    (1) expr -> . ( expr )
+    (2) expr -> . MINUS expr
+    (3) expr -> . OBJECT
+    (4) expr -> . INPUT ( expr )
+    (5) expr -> . INPUT
+    (6) expr -> . PRINT
+    (7) expr -> . ID ( )
+    (8) expr -> . ID ( expr )
+    (9) expr -> . ID ( param )
+    (10) expr -> . ID
+    (11) expr -> . expr . ID
+    (12) expr -> . expr . expr
+    (13) expr -> . ID . expr
+    (14) expr -> . ID . ID
+    (15) expr -> . STRING
+    (16) expr -> . NUMBER
+    (17) expr -> . expr OR expr
+    (18) expr -> . expr AND expr
+    (19) expr -> . expr GT expr
+    (20) expr -> . expr LT expr
+    (21) expr -> . expr EQ expr
+    (22) expr -> . expr NE expr
+    (23) expr -> . expr GE expr
+    (24) expr -> . expr LE expr
+    (25) expr -> . expr DIVIDE expr
+    (26) expr -> . expr TIMES expr
+    (27) expr -> . expr MINUS expr
+    (28) expr -> . expr PLUS expr
+    FUNC            shift and go to state 3
+    IF              shift and go to state 5
+    WHILE           shift and go to state 6
+    RETURN          shift and go to state 7
+    PRINT           shift and go to state 8
+    ID              shift and go to state 4
+    (               shift and go to state 9
+    MINUS           shift and go to state 10
+    OBJECT          shift and go to state 11
+    INPUT           shift and go to state 12
+    STRING          shift and go to state 13
+    NUMBER          shift and go to state 14
+
+    expr                           shift and go to state 2
+    stmt                           shift and go to state 82
+
+state 71
+
+    (38) stmt -> WHILE expr { . stmt }
+    (29) stmt -> . expr ;
+    (30) stmt -> . expr ; stmt
+    (31) stmt -> . stmt ;
+    (32) stmt -> . stmt ; stmt
+    (33) stmt -> . FUNC ID { stmt }
+    (34) stmt -> . FUNC ID expr { stmt }
+    (35) stmt -> . FUNC ID param { stmt }
+    (36) stmt -> . IF expr { stmt } ELSE { stmt }
+    (37) stmt -> . IF expr { stmt }
+    (38) stmt -> . WHILE expr { stmt }
+    (39) stmt -> . RETURN expr
+    (40) stmt -> . PRINT ( expr )
+    (41) stmt -> . expr = expr
+    (42) stmt -> . ID = expr
+    (1) expr -> . ( expr )
+    (2) expr -> . MINUS expr
+    (3) expr -> . OBJECT
+    (4) expr -> . INPUT ( expr )
+    (5) expr -> . INPUT
+    (6) expr -> . PRINT
+    (7) expr -> . ID ( )
+    (8) expr -> . ID ( expr )
+    (9) expr -> . ID ( param )
+    (10) expr -> . ID
+    (11) expr -> . expr . ID
+    (12) expr -> . expr . expr
+    (13) expr -> . ID . expr
+    (14) expr -> . ID . ID
+    (15) expr -> . STRING
+    (16) expr -> . NUMBER
+    (17) expr -> . expr OR expr
+    (18) expr -> . expr AND expr
+    (19) expr -> . expr GT expr
+    (20) expr -> . expr LT expr
+    (21) expr -> . expr EQ expr
+    (22) expr -> . expr NE expr
+    (23) expr -> . expr GE expr
+    (24) expr -> . expr LE expr
+    (25) expr -> . expr DIVIDE expr
+    (26) expr -> . expr TIMES expr
+    (27) expr -> . expr MINUS expr
+    (28) expr -> . expr PLUS expr
+    FUNC            shift and go to state 3
+    IF              shift and go to state 5
+    WHILE           shift and go to state 6
+    RETURN          shift and go to state 7
+    PRINT           shift and go to state 8
+    ID              shift and go to state 4
+    (               shift and go to state 9
+    MINUS           shift and go to state 10
+    OBJECT          shift and go to state 11
+    INPUT           shift and go to state 12
+    STRING          shift and go to state 13
+    NUMBER          shift and go to state 14
+
+    expr                           shift and go to state 2
+    stmt                           shift and go to state 83
+
+state 72
+
+    (40) stmt -> PRINT ( expr . )
+    (11) expr -> expr . . ID
+    (12) expr -> expr . . expr
+    (17) expr -> expr . OR expr
+    (18) expr -> expr . AND expr
+    (19) expr -> expr . GT expr
+    (20) expr -> expr . LT expr
+    (21) expr -> expr . EQ expr
+    (22) expr -> expr . NE expr
+    (23) expr -> expr . GE expr
+    (24) expr -> expr . LE expr
+    (25) expr -> expr . DIVIDE expr
+    (26) expr -> expr . TIMES expr
+    (27) expr -> expr . MINUS expr
+    (28) expr -> expr . PLUS expr
+    )               shift and go to state 84
+    .               shift and go to state 18
+    OR              shift and go to state 19
+    AND             shift and go to state 20
+    GT              shift and go to state 21
+    LT              shift and go to state 22
+    EQ              shift and go to state 23
+    NE              shift and go to state 24
+    GE              shift and go to state 25
+    LE              shift and go to state 26
+    DIVIDE          shift and go to state 27
+    TIMES           shift and go to state 28
+    MINUS           shift and go to state 29
+    PLUS            shift and go to state 30
+
+
+state 73
+
+    (1) expr -> ( expr ) .
+    ;               reduce using rule 1 (expr -> ( expr ) .)
+    =               reduce using rule 1 (expr -> ( expr ) .)
+    .               reduce using rule 1 (expr -> ( expr ) .)
+    OR              reduce using rule 1 (expr -> ( expr ) .)
+    AND             reduce using rule 1 (expr -> ( expr ) .)
+    GT              reduce using rule 1 (expr -> ( expr ) .)
+    LT              reduce using rule 1 (expr -> ( expr ) .)
+    EQ              reduce using rule 1 (expr -> ( expr ) .)
+    NE              reduce using rule 1 (expr -> ( expr ) .)
+    GE              reduce using rule 1 (expr -> ( expr ) .)
+    LE              reduce using rule 1 (expr -> ( expr ) .)
+    DIVIDE          reduce using rule 1 (expr -> ( expr ) .)
+    TIMES           reduce using rule 1 (expr -> ( expr ) .)
+    MINUS           reduce using rule 1 (expr -> ( expr ) .)
+    PLUS            reduce using rule 1 (expr -> ( expr ) .)
+    {               reduce using rule 1 (expr -> ( expr ) .)
+    $end            reduce using rule 1 (expr -> ( expr ) .)
+    }               reduce using rule 1 (expr -> ( expr ) .)
+    )               reduce using rule 1 (expr -> ( expr ) .)
+    ,               reduce using rule 1 (expr -> ( expr ) .)
+
+
+state 74
+
+    (4) expr -> INPUT ( expr . )
+    (11) expr -> expr . . ID
+    (12) expr -> expr . . expr
+    (17) expr -> expr . OR expr
+    (18) expr -> expr . AND expr
+    (19) expr -> expr . GT expr
+    (20) expr -> expr . LT expr
+    (21) expr -> expr . EQ expr
+    (22) expr -> expr . NE expr
+    (23) expr -> expr . GE expr
+    (24) expr -> expr . LE expr
+    (25) expr -> expr . DIVIDE expr
+    (26) expr -> expr . TIMES expr
+    (27) expr -> expr . MINUS expr
+    (28) expr -> expr . PLUS expr
+    )               shift and go to state 85
+    .               shift and go to state 18
+    OR              shift and go to state 19
+    AND             shift and go to state 20
+    GT              shift and go to state 21
+    LT              shift and go to state 22
+    EQ              shift and go to state 23
+    NE              shift and go to state 24
+    GE              shift and go to state 25
+    LE              shift and go to state 26
+    DIVIDE          shift and go to state 27
+    TIMES           shift and go to state 28
+    MINUS           shift and go to state 29
+    PLUS            shift and go to state 30
+
+
+state 75
+
+    (33) stmt -> FUNC ID { stmt . }
+    (31) stmt -> stmt . ;
+    (32) stmt -> stmt . ; stmt
+    }               shift and go to state 86
+    ;               shift and go to state 15
+
+
+state 76
+
+    (34) stmt -> FUNC ID expr { . stmt }
+    (29) stmt -> . expr ;
+    (30) stmt -> . expr ; stmt
+    (31) stmt -> . stmt ;
+    (32) stmt -> . stmt ; stmt
+    (33) stmt -> . FUNC ID { stmt }
+    (34) stmt -> . FUNC ID expr { stmt }
+    (35) stmt -> . FUNC ID param { stmt }
+    (36) stmt -> . IF expr { stmt } ELSE { stmt }
+    (37) stmt -> . IF expr { stmt }
+    (38) stmt -> . WHILE expr { stmt }
+    (39) stmt -> . RETURN expr
+    (40) stmt -> . PRINT ( expr )
+    (41) stmt -> . expr = expr
+    (42) stmt -> . ID = expr
+    (1) expr -> . ( expr )
+    (2) expr -> . MINUS expr
+    (3) expr -> . OBJECT
+    (4) expr -> . INPUT ( expr )
+    (5) expr -> . INPUT
+    (6) expr -> . PRINT
+    (7) expr -> . ID ( )
+    (8) expr -> . ID ( expr )
+    (9) expr -> . ID ( param )
+    (10) expr -> . ID
+    (11) expr -> . expr . ID
+    (12) expr -> . expr . expr
+    (13) expr -> . ID . expr
+    (14) expr -> . ID . ID
+    (15) expr -> . STRING
+    (16) expr -> . NUMBER
+    (17) expr -> . expr OR expr
+    (18) expr -> . expr AND expr
+    (19) expr -> . expr GT expr
+    (20) expr -> . expr LT expr
+    (21) expr -> . expr EQ expr
+    (22) expr -> . expr NE expr
+    (23) expr -> . expr GE expr
+    (24) expr -> . expr LE expr
+    (25) expr -> . expr DIVIDE expr
+    (26) expr -> . expr TIMES expr
+    (27) expr -> . expr MINUS expr
+    (28) expr -> . expr PLUS expr
+    FUNC            shift and go to state 3
+    IF              shift and go to state 5
+    WHILE           shift and go to state 6
+    RETURN          shift and go to state 7
+    PRINT           shift and go to state 8
+    ID              shift and go to state 4
+    (               shift and go to state 9
+    MINUS           shift and go to state 10
+    OBJECT          shift and go to state 11
+    INPUT           shift and go to state 12
+    STRING          shift and go to state 13
+    NUMBER          shift and go to state 14
+
+    expr                           shift and go to state 2
+    stmt                           shift and go to state 87
+
+state 77
+
+    (44) param -> expr , . param
+    (45) param -> expr , . expr
+    (43) param -> . param , param
+    (44) param -> . expr , param
+    (45) param -> . expr , expr
+    (1) expr -> . ( expr )
+    (2) expr -> . MINUS expr
+    (3) expr -> . OBJECT
+    (4) expr -> . INPUT ( expr )
+    (5) expr -> . INPUT
+    (6) expr -> . PRINT
+    (7) expr -> . ID ( )
+    (8) expr -> . ID ( expr )
+    (9) expr -> . ID ( param )
+    (10) expr -> . ID
+    (11) expr -> . expr . ID
+    (12) expr -> . expr . expr
+    (13) expr -> . ID . expr
+    (14) expr -> . ID . ID
+    (15) expr -> . STRING
+    (16) expr -> . NUMBER
+    (17) expr -> . expr OR expr
+    (18) expr -> . expr AND expr
+    (19) expr -> . expr GT expr
+    (20) expr -> . expr LT expr
+    (21) expr -> . expr EQ expr
+    (22) expr -> . expr NE expr
+    (23) expr -> . expr GE expr
+    (24) expr -> . expr LE expr
+    (25) expr -> . expr DIVIDE expr
+    (26) expr -> . expr TIMES expr
+    (27) expr -> . expr MINUS expr
+    (28) expr -> . expr PLUS expr
+    (               shift and go to state 9
+    MINUS           shift and go to state 10
+    OBJECT          shift and go to state 11
+    INPUT           shift and go to state 12
+    PRINT           shift and go to state 36
+    ID              shift and go to state 37
+    STRING          shift and go to state 13
+    NUMBER          shift and go to state 14
+
+    expr                           shift and go to state 88
+    param                          shift and go to state 89
+
+state 78
+
+    (35) stmt -> FUNC ID param { . stmt }
+    (29) stmt -> . expr ;
+    (30) stmt -> . expr ; stmt
+    (31) stmt -> . stmt ;
+    (32) stmt -> . stmt ; stmt
+    (33) stmt -> . FUNC ID { stmt }
+    (34) stmt -> . FUNC ID expr { stmt }
+    (35) stmt -> . FUNC ID param { stmt }
+    (36) stmt -> . IF expr { stmt } ELSE { stmt }
+    (37) stmt -> . IF expr { stmt }
+    (38) stmt -> . WHILE expr { stmt }
+    (39) stmt -> . RETURN expr
+    (40) stmt -> . PRINT ( expr )
+    (41) stmt -> . expr = expr
+    (42) stmt -> . ID = expr
+    (1) expr -> . ( expr )
+    (2) expr -> . MINUS expr
+    (3) expr -> . OBJECT
+    (4) expr -> . INPUT ( expr )
+    (5) expr -> . INPUT
+    (6) expr -> . PRINT
+    (7) expr -> . ID ( )
+    (8) expr -> . ID ( expr )
+    (9) expr -> . ID ( param )
+    (10) expr -> . ID
+    (11) expr -> . expr . ID
+    (12) expr -> . expr . expr
+    (13) expr -> . ID . expr
+    (14) expr -> . ID . ID
+    (15) expr -> . STRING
+    (16) expr -> . NUMBER
+    (17) expr -> . expr OR expr
+    (18) expr -> . expr AND expr
+    (19) expr -> . expr GT expr
+    (20) expr -> . expr LT expr
+    (21) expr -> . expr EQ expr
+    (22) expr -> . expr NE expr
+    (23) expr -> . expr GE expr
+    (24) expr -> . expr LE expr
+    (25) expr -> . expr DIVIDE expr
+    (26) expr -> . expr TIMES expr
+    (27) expr -> . expr MINUS expr
+    (28) expr -> . expr PLUS expr
+    FUNC            shift and go to state 3
+    IF              shift and go to state 5
+    WHILE           shift and go to state 6
+    RETURN          shift and go to state 7
+    PRINT           shift and go to state 8
+    ID              shift and go to state 4
+    (               shift and go to state 9
+    MINUS           shift and go to state 10
+    OBJECT          shift and go to state 11
+    INPUT           shift and go to state 12
+    STRING          shift and go to state 13
+    NUMBER          shift and go to state 14
+
+    stmt                           shift and go to state 90
+    expr                           shift and go to state 2
+
+state 79
+
+    (43) param -> param , . param
+    (43) param -> . param , param
+    (44) param -> . expr , param
+    (45) param -> . expr , expr
+    (1) expr -> . ( expr )
+    (2) expr -> . MINUS expr
+    (3) expr -> . OBJECT
+    (4) expr -> . INPUT ( expr )
+    (5) expr -> . INPUT
+    (6) expr -> . PRINT
+    (7) expr -> . ID ( )
+    (8) expr -> . ID ( expr )
+    (9) expr -> . ID ( param )
+    (10) expr -> . ID
+    (11) expr -> . expr . ID
+    (12) expr -> . expr . expr
+    (13) expr -> . ID . expr
+    (14) expr -> . ID . ID
+    (15) expr -> . STRING
+    (16) expr -> . NUMBER
+    (17) expr -> . expr OR expr
+    (18) expr -> . expr AND expr
+    (19) expr -> . expr GT expr
+    (20) expr -> . expr LT expr
+    (21) expr -> . expr EQ expr
+    (22) expr -> . expr NE expr
+    (23) expr -> . expr GE expr
+    (24) expr -> . expr LE expr
+    (25) expr -> . expr DIVIDE expr
+    (26) expr -> . expr TIMES expr
+    (27) expr -> . expr MINUS expr
+    (28) expr -> . expr PLUS expr
+    (               shift and go to state 9
+    MINUS           shift and go to state 10
+    OBJECT          shift and go to state 11
+    INPUT           shift and go to state 12
+    PRINT           shift and go to state 36
+    ID              shift and go to state 37
+    STRING          shift and go to state 13
+    NUMBER          shift and go to state 14
+
+    param                          shift and go to state 91
+    expr                           shift and go to state 92
+
+state 80
+
+    (8) expr -> ID ( expr ) .
+    ;               reduce using rule 8 (expr -> ID ( expr ) .)
+    =               reduce using rule 8 (expr -> ID ( expr ) .)
+    .               reduce using rule 8 (expr -> ID ( expr ) .)
+    OR              reduce using rule 8 (expr -> ID ( expr ) .)
+    AND             reduce using rule 8 (expr -> ID ( expr ) .)
+    GT              reduce using rule 8 (expr -> ID ( expr ) .)
+    LT              reduce using rule 8 (expr -> ID ( expr ) .)
+    EQ              reduce using rule 8 (expr -> ID ( expr ) .)
+    NE              reduce using rule 8 (expr -> ID ( expr ) .)
+    GE              reduce using rule 8 (expr -> ID ( expr ) .)
+    LE              reduce using rule 8 (expr -> ID ( expr ) .)
+    DIVIDE          reduce using rule 8 (expr -> ID ( expr ) .)
+    TIMES           reduce using rule 8 (expr -> ID ( expr ) .)
+    MINUS           reduce using rule 8 (expr -> ID ( expr ) .)
+    PLUS            reduce using rule 8 (expr -> ID ( expr ) .)
+    {               reduce using rule 8 (expr -> ID ( expr ) .)
+    $end            reduce using rule 8 (expr -> ID ( expr ) .)
+    }               reduce using rule 8 (expr -> ID ( expr ) .)
+    )               reduce using rule 8 (expr -> ID ( expr ) .)
+    ,               reduce using rule 8 (expr -> ID ( expr ) .)
+
+
+state 81
+
+    (9) expr -> ID ( param ) .
+    ;               reduce using rule 9 (expr -> ID ( param ) .)
+    =               reduce using rule 9 (expr -> ID ( param ) .)
+    .               reduce using rule 9 (expr -> ID ( param ) .)
+    OR              reduce using rule 9 (expr -> ID ( param ) .)
+    AND             reduce using rule 9 (expr -> ID ( param ) .)
+    GT              reduce using rule 9 (expr -> ID ( param ) .)
+    LT              reduce using rule 9 (expr -> ID ( param ) .)
+    EQ              reduce using rule 9 (expr -> ID ( param ) .)
+    NE              reduce using rule 9 (expr -> ID ( param ) .)
+    GE              reduce using rule 9 (expr -> ID ( param ) .)
+    LE              reduce using rule 9 (expr -> ID ( param ) .)
+    DIVIDE          reduce using rule 9 (expr -> ID ( param ) .)
+    TIMES           reduce using rule 9 (expr -> ID ( param ) .)
+    MINUS           reduce using rule 9 (expr -> ID ( param ) .)
+    PLUS            reduce using rule 9 (expr -> ID ( param ) .)
+    {               reduce using rule 9 (expr -> ID ( param ) .)
+    $end            reduce using rule 9 (expr -> ID ( param ) .)
+    }               reduce using rule 9 (expr -> ID ( param ) .)
+    )               reduce using rule 9 (expr -> ID ( param ) .)
+    ,               reduce using rule 9 (expr -> ID ( param ) .)
+
+
+state 82
+
+    (36) stmt -> IF expr { stmt . } ELSE { stmt }
+    (37) stmt -> IF expr { stmt . }
+    (31) stmt -> stmt . ;
+    (32) stmt -> stmt . ; stmt
+    }               shift and go to state 93
+    ;               shift and go to state 15
+
+
+state 83
+
+    (38) stmt -> WHILE expr { stmt . }
+    (31) stmt -> stmt . ;
+    (32) stmt -> stmt . ; stmt
+    }               shift and go to state 94
+    ;               shift and go to state 15
+
+
+state 84
+
+    (40) stmt -> PRINT ( expr ) .
+    ;               reduce using rule 40 (stmt -> PRINT ( expr ) .)
+    $end            reduce using rule 40 (stmt -> PRINT ( expr ) .)
+    }               reduce using rule 40 (stmt -> PRINT ( expr ) .)
+
+
+state 85
+
+    (4) expr -> INPUT ( expr ) .
+    ;               reduce using rule 4 (expr -> INPUT ( expr ) .)
+    =               reduce using rule 4 (expr -> INPUT ( expr ) .)
+    .               reduce using rule 4 (expr -> INPUT ( expr ) .)
+    OR              reduce using rule 4 (expr -> INPUT ( expr ) .)
+    AND             reduce using rule 4 (expr -> INPUT ( expr ) .)
+    GT              reduce using rule 4 (expr -> INPUT ( expr ) .)
+    LT              reduce using rule 4 (expr -> INPUT ( expr ) .)
+    EQ              reduce using rule 4 (expr -> INPUT ( expr ) .)
+    NE              reduce using rule 4 (expr -> INPUT ( expr ) .)
+    GE              reduce using rule 4 (expr -> INPUT ( expr ) .)
+    LE              reduce using rule 4 (expr -> INPUT ( expr ) .)
+    DIVIDE          reduce using rule 4 (expr -> INPUT ( expr ) .)
+    TIMES           reduce using rule 4 (expr -> INPUT ( expr ) .)
+    MINUS           reduce using rule 4 (expr -> INPUT ( expr ) .)
+    PLUS            reduce using rule 4 (expr -> INPUT ( expr ) .)
+    {               reduce using rule 4 (expr -> INPUT ( expr ) .)
+    $end            reduce using rule 4 (expr -> INPUT ( expr ) .)
+    }               reduce using rule 4 (expr -> INPUT ( expr ) .)
+    )               reduce using rule 4 (expr -> INPUT ( expr ) .)
+    ,               reduce using rule 4 (expr -> INPUT ( expr ) .)
+
+
+state 86
+
+    (33) stmt -> FUNC ID { stmt } .
+    ;               reduce using rule 33 (stmt -> FUNC ID { stmt } .)
+    $end            reduce using rule 33 (stmt -> FUNC ID { stmt } .)
+    }               reduce using rule 33 (stmt -> FUNC ID { stmt } .)
+
+
+state 87
+
+    (34) stmt -> FUNC ID expr { stmt . }
+    (31) stmt -> stmt . ;
+    (32) stmt -> stmt . ; stmt
+    }               shift and go to state 95
+    ;               shift and go to state 15
+
+
+state 88
+
+    (45) param -> expr , expr .
+    (44) param -> expr . , param
+    (45) param -> expr . , expr
+    (11) expr -> expr . . ID
+    (12) expr -> expr . . expr
+    (17) expr -> expr . OR expr
+    (18) expr -> expr . AND expr
+    (19) expr -> expr . GT expr
+    (20) expr -> expr . LT expr
+    (21) expr -> expr . EQ expr
+    (22) expr -> expr . NE expr
+    (23) expr -> expr . GE expr
+    (24) expr -> expr . LE expr
+    (25) expr -> expr . DIVIDE expr
+    (26) expr -> expr . TIMES expr
+    (27) expr -> expr . MINUS expr
+    (28) expr -> expr . PLUS expr
+  ! shift/reduce conflict for , resolved as shift
+    {               reduce using rule 45 (param -> expr , expr .)
+    )               reduce using rule 45 (param -> expr , expr .)
+    ,               shift and go to state 77
+    .               shift and go to state 18
+    OR              shift and go to state 19
+    AND             shift and go to state 20
+    GT              shift and go to state 21
+    LT              shift and go to state 22
+    EQ              shift and go to state 23
+    NE              shift and go to state 24
+    GE              shift and go to state 25
+    LE              shift and go to state 26
+    DIVIDE          shift and go to state 27
+    TIMES           shift and go to state 28
+    MINUS           shift and go to state 29
+    PLUS            shift and go to state 30
+
+
+state 89
+
+    (44) param -> expr , param .
+    (43) param -> param . , param
+  ! shift/reduce conflict for , resolved as shift
+    {               reduce using rule 44 (param -> expr , param .)
+    )               reduce using rule 44 (param -> expr , param .)
+    ,               shift and go to state 79
+
+
+state 90
+
+    (35) stmt -> FUNC ID param { stmt . }
+    (31) stmt -> stmt . ;
+    (32) stmt -> stmt . ; stmt
+    }               shift and go to state 96
+    ;               shift and go to state 15
+
+
+state 91
+
+    (43) param -> param , param .
+    (43) param -> param . , param
+  ! shift/reduce conflict for , resolved as shift
+    {               reduce using rule 43 (param -> param , param .)
+    )               reduce using rule 43 (param -> param , param .)
+    ,               shift and go to state 79
+
+
+state 92
+
+    (44) param -> expr . , param
+    (45) param -> expr . , expr
+    (11) expr -> expr . . ID
+    (12) expr -> expr . . expr
+    (17) expr -> expr . OR expr
+    (18) expr -> expr . AND expr
+    (19) expr -> expr . GT expr
+    (20) expr -> expr . LT expr
+    (21) expr -> expr . EQ expr
+    (22) expr -> expr . NE expr
+    (23) expr -> expr . GE expr
+    (24) expr -> expr . LE expr
+    (25) expr -> expr . DIVIDE expr
+    (26) expr -> expr . TIMES expr
+    (27) expr -> expr . MINUS expr
+    (28) expr -> expr . PLUS expr
+    ,               shift and go to state 77
+    .               shift and go to state 18
+    OR              shift and go to state 19
+    AND             shift and go to state 20
+    GT              shift and go to state 21
+    LT              shift and go to state 22
+    EQ              shift and go to state 23
+    NE              shift and go to state 24
+    GE              shift and go to state 25
+    LE              shift and go to state 26
+    DIVIDE          shift and go to state 27
+    TIMES           shift and go to state 28
+    MINUS           shift and go to state 29
+    PLUS            shift and go to state 30
+
+
+state 93
+
+    (36) stmt -> IF expr { stmt } . ELSE { stmt }
+    (37) stmt -> IF expr { stmt } .
+    ELSE            shift and go to state 97
+    ;               reduce using rule 37 (stmt -> IF expr { stmt } .)
+    $end            reduce using rule 37 (stmt -> IF expr { stmt } .)
+    }               reduce using rule 37 (stmt -> IF expr { stmt } .)
+
+
+state 94
+
+    (38) stmt -> WHILE expr { stmt } .
+    ;               reduce using rule 38 (stmt -> WHILE expr { stmt } .)
+    $end            reduce using rule 38 (stmt -> WHILE expr { stmt } .)
+    }               reduce using rule 38 (stmt -> WHILE expr { stmt } .)
+
+
+state 95
+
+    (34) stmt -> FUNC ID expr { stmt } .
+    ;               reduce using rule 34 (stmt -> FUNC ID expr { stmt } .)
+    $end            reduce using rule 34 (stmt -> FUNC ID expr { stmt } .)
+    }               reduce using rule 34 (stmt -> FUNC ID expr { stmt } .)
+
+
+state 96
+
+    (35) stmt -> FUNC ID param { stmt } .
+    ;               reduce using rule 35 (stmt -> FUNC ID param { stmt } .)
+    $end            reduce using rule 35 (stmt -> FUNC ID param { stmt } .)
+    }               reduce using rule 35 (stmt -> FUNC ID param { stmt } .)
+
+
+state 97
+
+    (36) stmt -> IF expr { stmt } ELSE . { stmt }
+    {               shift and go to state 98
+
+
+state 98
+
+    (36) stmt -> IF expr { stmt } ELSE { . stmt }
+    (29) stmt -> . expr ;
+    (30) stmt -> . expr ; stmt
+    (31) stmt -> . stmt ;
+    (32) stmt -> . stmt ; stmt
+    (33) stmt -> . FUNC ID { stmt }
+    (34) stmt -> . FUNC ID expr { stmt }
+    (35) stmt -> . FUNC ID param { stmt }
+    (36) stmt -> . IF expr { stmt } ELSE { stmt }
+    (37) stmt -> . IF expr { stmt }
+    (38) stmt -> . WHILE expr { stmt }
+    (39) stmt -> . RETURN expr
+    (40) stmt -> . PRINT ( expr )
+    (41) stmt -> . expr = expr
+    (42) stmt -> . ID = expr
+    (1) expr -> . ( expr )
+    (2) expr -> . MINUS expr
+    (3) expr -> . OBJECT
+    (4) expr -> . INPUT ( expr )
+    (5) expr -> . INPUT
+    (6) expr -> . PRINT
+    (7) expr -> . ID ( )
+    (8) expr -> . ID ( expr )
+    (9) expr -> . ID ( param )
+    (10) expr -> . ID
+    (11) expr -> . expr . ID
+    (12) expr -> . expr . expr
+    (13) expr -> . ID . expr
+    (14) expr -> . ID . ID
+    (15) expr -> . STRING
+    (16) expr -> . NUMBER
+    (17) expr -> . expr OR expr
+    (18) expr -> . expr AND expr
+    (19) expr -> . expr GT expr
+    (20) expr -> . expr LT expr
+    (21) expr -> . expr EQ expr
+    (22) expr -> . expr NE expr
+    (23) expr -> . expr GE expr
+    (24) expr -> . expr LE expr
+    (25) expr -> . expr DIVIDE expr
+    (26) expr -> . expr TIMES expr
+    (27) expr -> . expr MINUS expr
+    (28) expr -> . expr PLUS expr
+    FUNC            shift and go to state 3
+    IF              shift and go to state 5
+    WHILE           shift and go to state 6
+    RETURN          shift and go to state 7
+    PRINT           shift and go to state 8
+    ID              shift and go to state 4
+    (               shift and go to state 9
+    MINUS           shift and go to state 10
+    OBJECT          shift and go to state 11
+    INPUT           shift and go to state 12
+    STRING          shift and go to state 13
+    NUMBER          shift and go to state 14
+
+    expr                           shift and go to state 2
+    stmt                           shift and go to state 99
+
+state 99
+
+    (36) stmt -> IF expr { stmt } ELSE { stmt . }
+    (31) stmt -> stmt . ;
+    (32) stmt -> stmt . ; stmt
+    }               shift and go to state 100
+    ;               shift and go to state 15
+
+
+state 100
+
+    (36) stmt -> IF expr { stmt } ELSE { stmt } .
+    ;               reduce using rule 36 (stmt -> IF expr { stmt } ELSE { stmt } .)
+    $end            reduce using rule 36 (stmt -> IF expr { stmt } ELSE { stmt } .)
+    }               reduce using rule 36 (stmt -> IF expr { stmt } ELSE { stmt } .)
+
+
+Conflicts:
+
+shift/reduce conflict for = in state 4 resolved as shift
+shift/reduce conflict for . in state 4 resolved as shift
+shift/reduce conflict for . in state 37 resolved as shift
+shift/reduce conflict for ; in state 44 resolved as shift
+shift/reduce conflict for ; in state 45 resolved as shift
+shift/reduce conflict for . in state 47 resolved as shift
+shift/reduce conflict for OR in state 47 resolved as shift
+shift/reduce conflict for AND in state 47 resolved as shift
+shift/reduce conflict for GT in state 47 resolved as shift
+shift/reduce conflict for LT in state 47 resolved as shift
+shift/reduce conflict for EQ in state 47 resolved as shift
+shift/reduce conflict for NE in state 47 resolved as shift
+shift/reduce conflict for GE in state 47 resolved as shift
+shift/reduce conflict for LE in state 47 resolved as shift
+shift/reduce conflict for DIVIDE in state 47 resolved as shift
+shift/reduce conflict for TIMES in state 47 resolved as shift
+shift/reduce conflict for MINUS in state 47 resolved as shift
+shift/reduce conflict for PLUS in state 47 resolved as shift
+shift/reduce conflict for . in state 48 resolved as shift
+shift/reduce conflict for . in state 49 resolved as shift
+shift/reduce conflict for OR in state 49 resolved as shift
+shift/reduce conflict for AND in state 49 resolved as shift
+shift/reduce conflict for GT in state 49 resolved as shift
+shift/reduce conflict for LT in state 49 resolved as shift
+shift/reduce conflict for EQ in state 49 resolved as shift
+shift/reduce conflict for NE in state 49 resolved as shift
+shift/reduce conflict for GE in state 49 resolved as shift
+shift/reduce conflict for LE in state 49 resolved as shift
+shift/reduce conflict for DIVIDE in state 49 resolved as shift
+shift/reduce conflict for TIMES in state 49 resolved as shift
+shift/reduce conflict for MINUS in state 49 resolved as shift
+shift/reduce conflict for PLUS in state 49 resolved as shift
+shift/reduce conflict for . in state 50 resolved as shift
+shift/reduce conflict for OR in state 50 resolved as shift
+shift/reduce conflict for AND in state 50 resolved as shift
+shift/reduce conflict for GT in state 50 resolved as shift
+shift/reduce conflict for LT in state 50 resolved as shift
+shift/reduce conflict for EQ in state 50 resolved as shift
+shift/reduce conflict for NE in state 50 resolved as shift
+shift/reduce conflict for GE in state 50 resolved as shift
+shift/reduce conflict for LE in state 50 resolved as shift
+shift/reduce conflict for DIVIDE in state 50 resolved as shift
+shift/reduce conflict for TIMES in state 50 resolved as shift
+shift/reduce conflict for MINUS in state 50 resolved as shift
+shift/reduce conflict for PLUS in state 50 resolved as shift
+shift/reduce conflict for . in state 68 resolved as shift
+shift/reduce conflict for . in state 69 resolved as shift
+shift/reduce conflict for OR in state 69 resolved as shift
+shift/reduce conflict for AND in state 69 resolved as shift
+shift/reduce conflict for GT in state 69 resolved as shift
+shift/reduce conflict for LT in state 69 resolved as shift
+shift/reduce conflict for EQ in state 69 resolved as shift
+shift/reduce conflict for NE in state 69 resolved as shift
+shift/reduce conflict for GE in state 69 resolved as shift
+shift/reduce conflict for LE in state 69 resolved as shift
+shift/reduce conflict for DIVIDE in state 69 resolved as shift
+shift/reduce conflict for TIMES in state 69 resolved as shift
+shift/reduce conflict for MINUS in state 69 resolved as shift
+shift/reduce conflict for PLUS in state 69 resolved as shift
+shift/reduce conflict for , in state 88 resolved as shift
+shift/reduce conflict for , in state 89 resolved as shift
+shift/reduce conflict for , in state 91 resolved as shift
+reduce/reduce conflict in state 48 resolved using rule expr -> expr . ID
+rejected rule (expr -> ID) in state 48
+reduce/reduce conflict in state 68 resolved using rule expr -> ID . ID
+rejected rule (expr -> ID) in state 68

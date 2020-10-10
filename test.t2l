@@ -1,0 +1,9 @@
+b = 0;
+
+func hi {
+	print(b);
+	return "Hi";
+};
+
+print(hi());
+print(b);
